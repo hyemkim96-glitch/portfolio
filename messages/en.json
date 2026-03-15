@@ -1,0 +1,126 @@
+{
+    "Common": {
+        "home": "Home",
+        "portfolio": "Portfolio",
+        "aiArtwork": "AI Artwork",
+        "aiService": "AI Service",
+        "contact": "Contact",
+        "resume": "Resume"
+    },
+    "Hero": {
+        "headline": "Hyemin Kim,\nAgile UX Designer.",
+        "description": "5+ years of structured UX/UI experience across B2B LaaS, consumer electronics, and automotive HMI — building design systems, conducting user research, and collaborating globally to raise product quality.",
+        "years": "5+ Years Experience",
+        "domains": "Automotive × Healthcare × B2B SaaS",
+        "viewPortfolio": "View Portfolio",
+        "downloadResume": "Download Resume"
+    },
+    "About": {
+        "coreTitle": "Core Competencies",
+        "core": {
+            "domain": {
+                "title": "Domain Versatility",
+                "desc": "Drawing on UX/UI experience across distinct domains — B2B SaaS (logistics), consumer electronics, and automotive HMI — I adapt quickly to different user contexts and business goals to define the right design direction."
+            },
+            "data": {
+                "title": "Data-Driven Design",
+                "desc": "I combine qualitative methods like user interviews and heuristic evaluations with usage data analysis to validate hypotheses and build evidence-based UX strategies — translating findings into shareable insights for the team."
+            },
+            "ai": {
+                "title": "AI-Powered Workflow",
+                "desc": "I actively integrate generative AI into the design process to reduce repetitive work and boost productivity in mockup creation, documentation, and asset generation — exploring how AI tools can embed into the entire team's workflow."
+            },
+            "production": {
+                "title": "Production & Guidelines",
+                "desc": "I write design guides and spec documents that account for real development constraints, ensuring design intent is delivered consistently to the final product. I have hands-on experience building design systems and defining components."
+            },
+            "collab": {
+                "title": "Collaborative Communication",
+                "desc": "I collaborate actively with engineering, planning, and marketing teams — explaining design intent in the language of each stakeholder. I take a proactive role in defining how design contributes to shared goals."
+            }
+        }
+    },
+    "Portfolio": {
+        "title": "Portfolio",
+        "viewDeck": "View",
+        "viewPdf": "View as PDF",
+        "projects": {
+            "m8": {
+                "title": "M8",
+                "subtitle": "New Massage Chair UX/UI\nFocusing on distraction-free relaxation",
+                "period": "2024.06 ~ 2024.12",
+                "description": "Focused on the essence of rest by removing all elements that cause 'control fatigue'. Identified physical and cognitive barriers through data from 300 users and established intuitive PUI.",
+                "roles": "UX Planning (100%), UI Design (100%), QA (70%)",
+                "deckUrl": "https://www.figma.com/deck/RbBPjFLC5ZLnOcVaGyt3uZ"
+            },
+            "sauna": {
+                "title": "Sauna Booth",
+                "subtitle": "Personalized Immersion Experience\n1-person sauna booth UX/UI based on behavior & bio-signals",
+                "period": "2025.04 ~ 2025.12",
+                "description": "Shifted from functional roles to emotional immersion strategies using confined space. Enhanced usability with context-aware touchpoints and AI-generated media.",
+                "roles": "Product Planning (70%), UX Planning (100%), Content Creation, UI Design (100%), Motion Graphics (50%), QA (100%)",
+                "deckUrl": "https://www.figma.com/deck/aKiYmQ1j0i08OiRxcuecmC"
+            },
+            "ev": {
+                "title": "EV Charging",
+                "subtitle": "Smart Mobility Service\nEnhancing positive perception of EV charging experience",
+                "period": "2024.01.07 ~ 2024.06.12",
+                "description": "Structured EV charging pain points through observation it surveys. Designed integrated solutions for info overload and standby transitions based on IVI systems.",
+                "team": "Team of 4",
+                "stats": "Research 70% | Planning 70% | Design 80%",
+                "process": "Double Diamond Process Applied\n• Discover • Define • Develop • Deliver",
+                "deckUrl": "https://www.figma.com/deck/SE1HxW61qVRzJ2aOoOHkgh"
+            },
+            "taste": {
+                "title": "Taste Platform",
+                "subtitle": "Matching Community Service\nFinding the perfect taste and community for users",
+                "period": "24.01.07- 06.12",
+                "description": "Structured community participation journeys into before/during/after phases. Designed scenarios covering AI retrospectives and personalized recommendations.",
+                "team": "Team of 4",
+                "stats": "Research 70% | Planning 70% | Design 80%",
+                "process": "Double Diamond Process Applied\n• Discover • Define • Develop • Deliver",
+                "deckUrl": "https://www.figma.com/deck/73DNWsatTwnZhvrWB8xEnd"
+            },
+            "sds": {
+                "title": "H9 / Samsung SDS",
+                "subtitle": "Logistics Platform (LaaS) Fulfillment Service UX/UI Design",
+                "period": "2023.01 ~ 2024.05",
+                "description": "A logistics platform project balancing operator and shipper requirements on a unified data structure. (Content is private due to security and ongoing development.)",
+                "isPrivate": true
+            }
+        }
+    },
+    "AIArtwork": {
+        "title": "AI Artwork",
+        "description": "Artistic experiments and design explorations created with AI tools.",
+        "imagePrefix": "artwork_",
+        "ready": "Ready"
+    },
+    "AISites": {
+        "title": "AI Service",
+        "description": "Services built using AI to solve practical problems or experiment with new user experiences.",
+        "visitSite": "Visit Site",
+        "sites": {
+            "chartstory": {
+                "name": "ChartStory",
+                "description": "To overcome the limitations of static charts in explaining data context, I designed and deployed an intelligent data reporting service that combines real-time AI data analysis with interactive storytelling."
+            },
+            "vibecodingskillset": {
+                "name": "Vibe Coding Skillset",
+                "description": "To reduce the high cognitive cost of acquiring fragmented technical information, I built a knowledge-sharing platform that provides AI-curated core knowledge and immediately applicable assets."
+            }
+        }
+    },
+    "Contact": {
+        "title": "Contact",
+        "description": "If you have a collaboration proposal or any inquiries, please use the form below.",
+        "labelName": "Enter Name:",
+        "labelEmail": "Enter Email:",
+        "labelMessage": "Enter Message:",
+        "placeholderName": "Name",
+        "placeholderEmail": "Email",
+        "placeholderMessage": "Type your message here...",
+        "executeSend": "EXECUTE SEND",
+        "alternative": "# Alternative Channels"
+    }
+}

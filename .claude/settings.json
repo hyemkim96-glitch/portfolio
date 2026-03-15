@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run dev)",
+      "Bash(test -d \"c:\\\\Users\\\\user\\\\Desktop\\\\hyemin-portfolio\\\\src\\\\components\\\\ui\")",
+      "Bash(npx shadcn@latest add button card badge input textarea label separator --yes)",
+      "Bash(npx magicui-cli@latest add marquee blur-fade animated-gradient-text word-rotate number-ticker --yes)",
+      "Bash(npx shadcn@latest add \"https://magicui.design/r/marquee\" --yes)",
+      "Bash(git --version)"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\user\\Desktop\\hyemin-portfolio\\src\\app\\[locale]\\portfolio\\[id]",
+      "C:\\Users\\user\\.claude\\projects\\c--Users-user-Desktop-hyemin-portfolio"
+    ]
+  }
+}
