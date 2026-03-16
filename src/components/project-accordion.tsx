@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { X } from 'lucide-react';
+import { X, ChevronDown } from 'lucide-react';
 import { BlurFade } from '@/components/ui/blur-fade';
 import type { DriveFile } from './artwork-gallery';
 
@@ -34,31 +34,31 @@ export function ProjectAccordion({
     items: ProjectItem[];
     privateNote: string;
 }) {
-    const [openKey, setOpenKey] = useState<string | null>(null);
+    const [openKeys, setOpenKeys] = useState<Set<string>>(new Set());
     const [lightbox, setLightbox] = useState<DriveFile | null>(null);
     const containerRef = useRef<HTMLDivElement>(null);
-    const savedScrollY = useRef<number>(0);
+    const savedScrollY = useRef<Map<string, number>>(new Map());
 
-    const open = (key: string) => {
-        savedScrollY.current = window.scrollY;
-        setOpenKey(key);
+    const openItem = (key: string) => {
+        savedScrollY.current.set(key, window.scrollY);
+        setOpenKeys(prev => new Set([...prev, key]));
     };
 
-    const close = () => {
-        setOpenKey(null);
-        requestAnimationFrame(() => window.scrollTo({ top: savedScrollY.current, behavior: 'instant' }));
+    const closeItem = (key: string) => {
+        const saved = savedScrollY.current.get(key) ?? window.scrollY;
+        setOpenKeys(prev => { const next = new Set(prev); next.delete(key); return next; });
+        requestAnimationFrame(() => window.scrollTo({ top: saved, behavior: 'instant' }));
     };
 
     useEffect(() => {
         const onDoc = (e: MouseEvent) => {
-            if (openKey && !lightbox && containerRef.current && !containerRef.current.contains(e.target as Node)) {
-                close();
+            if (openKeys.size > 0 && !lightbox && containerRef.current && !containerRef.current.contains(e.target as Node)) {
+                setOpenKeys(new Set());
             }
         };
         document.addEventListener('mousedown', onDoc);
         return () => document.removeEventListener('mousedown', onDoc);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [openKey, lightbox]);
+    }, [openKeys, lightbox]);
 
     useEffect(() => {
         const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setLightbox(null); };
@@ -70,7 +70,7 @@ export function ProjectAccordion({
         <>
         <div ref={containerRef}>
             {items.map((item) => {
-                const isOpen = openKey === item.key;
+                const isOpen = openKeys.has(item.key);
                 const hasFiles = item.files.length > 0;
 
                 return (
@@ -79,7 +79,7 @@ export function ProjectAccordion({
                             {/* Row header */}
                             <div
                                 className={`py-8 flex flex-col sm:flex-row sm:items-start gap-6 -mx-6 sm:-mx-8 px-6 sm:px-8 transition-colors hover:bg-muted/30 ${hasFiles ? 'cursor-pointer' : 'cursor-default'}`}
-                                onClick={() => { if (hasFiles) { isOpen ? close() : open(item.key); } }}
+                                onClick={() => { if (hasFiles) { isOpen ? closeItem(item.key) : openItem(item.key); } }}
                             >
                                 <span className="text-xs text-muted-foreground font-mono w-8 shrink-0 mt-1">
                                     {String(item.index + 1).padStart(2, '0')}
@@ -90,9 +90,9 @@ export function ProjectAccordion({
                                         <div className="flex items-center gap-3 shrink-0">
                                             <span className="text-xs text-muted-foreground">{item.period}</span>
                                             {hasFiles && (
-                                                <span className="text-sm text-muted-foreground select-none w-4 text-center">
-                                                    {isOpen ? '−' : '+'}
-                                                </span>
+                                                <ChevronDown
+                                                    className={`h-4 w-4 text-muted-foreground transition-transform duration-300 ${isOpen ? 'rotate-180' : 'rotate-0'}`}
+                                                />
                                             )}
                                         </div>
                                     </div>
@@ -128,7 +128,7 @@ export function ProjectAccordion({
                                     </div>
                                     <div className="mt-10 flex justify-center">
                                         <button
-                                            onClick={close}
+                                            onClick={() => closeItem(item.key)}
                                             className="inline-flex items-center border border-border rounded-full px-8 py-2.5 text-xs text-muted-foreground hover:text-foreground hover:border-foreground/40 transition-colors"
                                         >
                                             닫기
