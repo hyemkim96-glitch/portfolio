@@ -17,6 +17,13 @@ const AI_SERVICE_URLS: Record<string, string> = {
     chartstory: 'https://chartstory.vercel.app/',
     vibecodingskillset: 'https://vibecodingskillset.vercel.app/',
 };
+const PROJECT_THUMBNAILS: Record<string, string | null> = {
+    m8: '/M8.png',
+    sauna: '/saunabooth.png',
+    ev: '/evcharging.png',
+    taste: '/platform.png',
+    sds: null,
+};
 
 async function getDriveFiles(): Promise<DriveFile[]> {
     const apiKey = process.env.GOOGLE_DRIVE_API_KEY;
@@ -163,7 +170,7 @@ export default async function HomePage() {
                     {/* UX/UI Projects */}
                     <div className="mt-12 mb-24">
                         <BlurFade delay={0.05} inView>
-                            <h3 className="text-xs font-medium tracking-widest uppercase text-muted-foreground mb-3">
+                            <h3 className="text-xs font-bold tracking-widest uppercase text-muted-foreground mb-3">
                                 {wt('projectsTitle')}
                             </h3>
                             <p className="text-sm text-muted-foreground mb-10">{wt('projectsDescription')}</p>
@@ -171,36 +178,52 @@ export default async function HomePage() {
 
                         <div className="space-y-0">
                             {PROJECT_KEYS.map((key, i) => {
-                                const title = pt(`projects.${key}.title`);
                                 const subtitle = pt(`projects.${key}.subtitle`);
                                 const period = pt(`projects.${key}.period`);
                                 const description = pt(`projects.${key}.description`);
                                 const deckUrl = key !== 'sds' ? pt(`projects.${key}.deckUrl`) : null;
                                 const isPrivate = key === 'sds';
 
+                                const thumb = PROJECT_THUMBNAILS[key];
                                 const rowClass = "group border-t border-border py-8 flex flex-col sm:flex-row sm:items-start gap-6 hover:bg-muted/30 -mx-6 sm:-mx-8 px-6 sm:px-8 transition-colors";
                                 const rowInner = (
                                     <>
                                         <span className="text-xs text-muted-foreground font-mono w-8 shrink-0 mt-1">
                                             {String(i + 1).padStart(2, '0')}
                                         </span>
-                                        <div className="flex-1 min-w-0">
-                                            <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
-                                                <div>
-                                                    <h4 className="text-xl font-bold text-foreground">{title}</h4>
-                                                    <p className="text-sm font-semibold text-muted-foreground whitespace-pre-line mt-0.5">{subtitle}</p>
+                                        <div className="flex-1 min-w-0 flex flex-col sm:flex-row gap-6">
+                                            <div className="flex-1 min-w-0">
+                                                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
+                                                    <p className="text-base font-bold text-foreground whitespace-pre-line">{subtitle}</p>
+                                                    <div className="flex items-center gap-3 shrink-0">
+                                                        <span className="text-xs text-muted-foreground">{period}</span>
+                                                        {isPrivate && (
+                                                            <span className="text-xs text-muted-foreground border border-border rounded-full px-3 py-1">
+                                                                {wt('privateNote')}
+                                                            </span>
+                                                        )}
+                                                    </div>
                                                 </div>
-                                                <div className="flex items-center gap-3 shrink-0">
-                                                    <span className="text-xs text-muted-foreground">{period}</span>
-                                                    {isPrivate && (
-                                                        <span className="text-xs text-muted-foreground border border-border rounded-full px-3 py-1">
-                                                            {wt('privateNote')}
+                                                <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
+                                                {deckUrl && (
+                                                    <div className="mt-4">
+                                                        <span className="inline-flex items-center border border-foreground/40 rounded-full px-4 py-1.5 text-xs font-medium text-foreground group-hover:bg-foreground group-hover:text-background group-hover:border-foreground transition-colors">
+                                                            {wt('viewDeck')}
                                                         </span>
-                                                    )}
-                                                    {deckUrl && <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">↗</span>}
-                                                </div>
+                                                    </div>
+                                                )}
                                             </div>
-                                            <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
+                                            {thumb && (
+                                                <div className="w-full sm:w-48 aspect-video rounded-md overflow-hidden bg-muted shrink-0">
+                                                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                                                    <img
+                                                        src={thumb}
+                                                        alt={subtitle}
+                                                        className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
+                                                        loading="lazy"
+                                                    />
+                                                </div>
+                                            )}
                                         </div>
                                     </>
                                 );
@@ -234,7 +257,7 @@ export default async function HomePage() {
                     <div className="mb-24">
                         <BlurFade delay={0.05} inView>
                             <div className="mb-10">
-                                <h3 className="text-xs font-medium tracking-widest uppercase text-muted-foreground mb-3">
+                                <h3 className="text-xs font-bold tracking-widest uppercase text-muted-foreground mb-3">
                                     {wt('artworkTitle')}
                                 </h3>
                                 <p className="text-sm text-muted-foreground">{wt('artworkDescription')}</p>
@@ -247,7 +270,7 @@ export default async function HomePage() {
                     <div className="mb-24">
                         <BlurFade delay={0.05} inView>
                             <div className="mb-10">
-                                <h3 className="text-xs font-medium tracking-widest uppercase text-muted-foreground mb-3">
+                                <h3 className="text-xs font-bold tracking-widest uppercase text-muted-foreground mb-3">
                                     {wt('servicesTitle')}
                                 </h3>
                                 <p className="text-sm text-muted-foreground">{wt('servicesDescription')}</p>
@@ -275,11 +298,11 @@ export default async function HomePage() {
                                         </div>
                                         {/* Content */}
                                         <div className="flex-1 min-w-0">
-                                            <div className="flex items-start justify-between gap-4 mb-2">
-                                                <h4 className="text-lg font-bold text-foreground">{at(`sites.${key}.name`)}</h4>
-                                                <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors shrink-0">↗</span>
-                                            </div>
-                                            <p className="text-sm text-muted-foreground leading-relaxed">{at(`sites.${key}.description`)}</p>
+                                            <h4 className="text-lg font-bold text-foreground mb-2">{at(`sites.${key}.name`)}</h4>
+                                            <p className="text-sm text-muted-foreground leading-relaxed mb-4">{at(`sites.${key}.description`)}</p>
+                                            <span className="inline-flex items-center border border-foreground/40 rounded-full px-4 py-1.5 text-xs font-medium text-foreground group-hover:bg-foreground group-hover:text-background group-hover:border-foreground transition-colors">
+                                                {wt('visitSite')}
+                                            </span>
                                         </div>
                                     </a>
                                 </BlurFade>
@@ -318,8 +341,8 @@ export default async function HomePage() {
                                 {ct('sendEmail')} →
                             </a>
                             <a
-                                href="/portfolio.pdf"
-                                download="Hyemin_Portfolio.pdf"
+                                href="/resume.pdf"
+                                download="이력서.pdf"
                                 className="inline-flex items-center gap-2 border border-background/30 px-6 py-3 rounded-full text-sm font-medium hover:bg-background hover:text-foreground transition-colors"
                             >
                                 {ct('viewResume')} →
