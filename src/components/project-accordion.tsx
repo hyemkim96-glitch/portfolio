@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import { X } from 'lucide-react';
 import { BlurFade } from '@/components/ui/blur-fade';
 import type { DriveFile } from './artwork-gallery';
 
@@ -14,8 +15,12 @@ export interface ProjectItem {
     files: DriveFile[];
 }
 
-function imgUrl(id: string) {
+function thumbUrl(id: string) {
     return `https://drive.google.com/thumbnail?id=${id}&sz=w1600`;
+}
+
+function fullUrl(id: string) {
+    return `https://drive.google.com/thumbnail?id=${id}&sz=w1920`;
 }
 
 function sortByName(files: DriveFile[]): DriveFile[] {
@@ -30,6 +35,7 @@ export function ProjectAccordion({
     privateNote: string;
 }) {
     const [openKey, setOpenKey] = useState<string | null>(null);
+    const [lightbox, setLightbox] = useState<DriveFile | null>(null);
     const containerRef = useRef<HTMLDivElement>(null);
     const savedScrollY = useRef<number>(0);
 
@@ -45,16 +51,23 @@ export function ProjectAccordion({
 
     useEffect(() => {
         const onDoc = (e: MouseEvent) => {
-            if (openKey && containerRef.current && !containerRef.current.contains(e.target as Node)) {
+            if (openKey && !lightbox && containerRef.current && !containerRef.current.contains(e.target as Node)) {
                 close();
             }
         };
         document.addEventListener('mousedown', onDoc);
         return () => document.removeEventListener('mousedown', onDoc);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [openKey]);
+    }, [openKey, lightbox]);
+
+    useEffect(() => {
+        const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setLightbox(null); };
+        if (lightbox) document.addEventListener('keydown', onKey);
+        return () => document.removeEventListener('keydown', onKey);
+    }, [lightbox]);
 
     return (
+        <>
         <div ref={containerRef}>
             {items.map((item) => {
                 const isOpen = openKey === item.key;
@@ -105,10 +118,11 @@ export function ProjectAccordion({
                                             /* eslint-disable-next-line @next/next/no-img-element */
                                             <img
                                                 key={file.id}
-                                                src={imgUrl(file.id)}
+                                                src={thumbUrl(file.id)}
                                                 alt={file.name}
-                                                className="w-full h-auto"
+                                                className="w-full h-auto cursor-zoom-in"
                                                 loading="lazy"
+                                                onClick={e => { e.stopPropagation(); setLightbox(file); }}
                                             />
                                         ))}
                                     </div>
@@ -128,5 +142,30 @@ export function ProjectAccordion({
             })}
             <div className="border-t border-border" />
         </div>
+
+        {/* Lightbox */}
+        {lightbox && (
+            <div
+                className="fixed inset-0 z-50 flex items-center justify-center bg-background/95 backdrop-blur-sm"
+                onClick={() => setLightbox(null)}
+            >
+                <button
+                    onClick={() => setLightbox(null)}
+                    className="absolute top-4 right-4 p-2 text-muted-foreground hover:text-foreground rounded-md transition-colors"
+                    aria-label="닫기"
+                >
+                    <X className="h-5 w-5" />
+                </button>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                    src={fullUrl(lightbox.id)}
+                    alt={lightbox.name}
+                    className="max-w-full max-h-screen object-contain"
+                    style={{ width: '1920px', height: '1080px', objectFit: 'contain' }}
+                    onClick={e => e.stopPropagation()}
+                />
+            </div>
+        )}
+    </>
     );
 }
