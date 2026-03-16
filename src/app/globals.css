@@ -24,6 +24,10 @@
     font-display: swap;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 :root {
     /* Light Mode — Greyscale + Charcoal */
     --background: #FFFFFF;

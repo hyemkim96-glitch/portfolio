@@ -1,18 +1,21 @@
 {
     "Common": {
         "home": "Home",
+        "work": "Work",
+        "article": "Article",
         "portfolio": "Portfolio",
         "aiArtwork": "AI Artwork",
         "aiService": "AI Service",
         "contact": "Contact",
-        "resume": "Resume"
+        "resume": "Resume",
+        "sayHello": "Say hello"
     },
     "Hero": {
         "headline": "Hyemin Kim,\nAgile UX Designer.",
         "description": "5+ years of structured UX/UI experience across B2B LaaS, consumer electronics, and automotive HMI — building design systems, conducting user research, and collaborating globally to raise product quality.",
         "years": "5+ Years Experience",
         "domains": "Automotive × Healthcare × B2B SaaS",
-        "viewPortfolio": "View Portfolio",
+        "viewWork": "View Work",
         "downloadResume": "Download Resume"
     },
     "About": {
@@ -40,6 +43,35 @@
             }
         }
     },
+    "ContactSection": {
+        "eyebrow": "Get in touch",
+        "headline": "Let's build together.",
+        "available": "Currently open to new collaboration and project proposals.",
+        "sendEmail": "Send an email",
+        "viewResume": "View Resume",
+        "copyright": "© 2026 Hyemin Kim"
+    },
+    "Article": {
+        "eyebrow": "Coming Soon",
+        "title": "Article",
+        "description": "A space for thoughts on design and work.",
+        "comingSoon": "This space isn't open yet.\nI'll be sharing design thoughts and work stories here soon.",
+        "notify": "Reach out via email if you'd like to stay updated."
+    },
+    "Work": {
+        "eyebrow": "Selected Work",
+        "title": "Work",
+        "projectsTitle": "UX/UI Projects",
+        "projectsDescription": "UX/UI planning and design projects across various domains.",
+        "artworkTitle": "AI Artwork",
+        "artworkDescription": "Images and videos created with AI for use in real-world projects.",
+        "servicesTitle": "AI Services",
+        "servicesDescription": "Services built using AI to solve practical problems or experiment with new user experiences.",
+        "viewDeck": "View Deck",
+        "visitSite": "Visit Site",
+        "privateNote": "Content is private due to security constraints.",
+        "viewFullPdf": "View Full Portfolio PDF"
+    },
     "Portfolio": {
         "title": "Portfolio",
         "viewDeck": "View",
@@ -64,21 +96,19 @@
             "ev": {
                 "title": "EV Charging",
                 "subtitle": "Smart Mobility Service\nEnhancing positive perception of EV charging experience",
-                "period": "2024.01.07 ~ 2024.06.12",
-                "description": "Structured EV charging pain points through observation it surveys. Designed integrated solutions for info overload and standby transitions based on IVI systems.",
+                "period": "2024.01 ~ 2024.06",
+                "description": "Structured EV charging pain points through observation and surveys. Designed integrated solutions for info overload and standby transitions based on IVI systems.",
                 "team": "Team of 4",
                 "stats": "Research 70% | Planning 70% | Design 80%",
-                "process": "Double Diamond Process Applied\n• Discover • Define • Develop • Deliver",
                 "deckUrl": "https://www.figma.com/deck/SE1HxW61qVRzJ2aOoOHkgh"
             },
             "taste": {
                 "title": "Taste Platform",
                 "subtitle": "Matching Community Service\nFinding the perfect taste and community for users",
-                "period": "24.01.07- 06.12",
+                "period": "2024.01 ~ 2024.06",
                 "description": "Structured community participation journeys into before/during/after phases. Designed scenarios covering AI retrospectives and personalized recommendations.",
                 "team": "Team of 4",
                 "stats": "Research 70% | Planning 70% | Design 80%",
-                "process": "Double Diamond Process Applied\n• Discover • Define • Develop • Deliver",
                 "deckUrl": "https://www.figma.com/deck/73DNWsatTwnZhvrWB8xEnd"
             },
             "sds": {
@@ -114,13 +144,13 @@
     "Contact": {
         "title": "Contact",
         "description": "If you have a collaboration proposal or any inquiries, please use the form below.",
-        "labelName": "Enter Name:",
-        "labelEmail": "Enter Email:",
-        "labelMessage": "Enter Message:",
+        "labelName": "Name",
+        "labelEmail": "Email",
+        "labelMessage": "Message",
         "placeholderName": "Name",
         "placeholderEmail": "Email",
         "placeholderMessage": "Type your message here...",
-        "executeSend": "EXECUTE SEND",
-        "alternative": "# Alternative Channels"
+        "executeSend": "Send",
+        "alternative": "Other channels"
     }
 }

@@ -68,12 +68,12 @@ export function ArtworkGallery({ files }: Props) {
     return (
         <>
             {/* Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 gap-4">
                 {files.map((file, i) => (
                     <button
                         key={file.id}
                         onClick={() => setSelected(i)}
-                        className="group relative aspect-square overflow-hidden rounded-md border border-border bg-muted hover:border-foreground/20 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                        className="group relative w-full aspect-video overflow-hidden rounded-md border border-border bg-muted hover:border-foreground/20 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                         aria-label={file.name}
                     >
                         {isVideo(file.mimeType) ? (
