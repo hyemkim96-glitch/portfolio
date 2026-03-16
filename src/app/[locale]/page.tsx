@@ -7,6 +7,7 @@ import { AnimatedGradientText } from '@/components/ui/animated-gradient-text';
 import { ScrollIndicator } from '@/components/scroll-indicator';
 import { CoreCompetencies } from '@/components/core-competencies';
 import { ArtworkGallery, type DriveFile } from '@/components/artwork-gallery';
+import { ProjectSlideshow } from '@/components/project-slideshow';
 
 const SKILLS = ['Figma', 'UX Research', 'IA Design', 'Design Systems', 'Motion Design', 'AI Design', 'Prototyping', 'Accessibility'];
 const DOMAINS = ['Automotive HMI', 'Healthcare UX', 'B2B SaaS', 'SDV Cabin UX', 'Design Tokens', 'Service Design', 'Smart Factory', 'Interaction Design'];
@@ -17,24 +18,22 @@ const AI_SERVICE_URLS: Record<string, string> = {
     chartstory: 'https://chartstory.vercel.app/',
     vibecodingskillset: 'https://vibecodingskillset.vercel.app/',
 };
-const PROJECT_THUMBNAILS: Record<string, string | null> = {
-    m8: '/M8.png',
-    sauna: '/saunabooth.png',
-    ev: '/evcharging.png',
-    taste: '/platform.png',
-    sds: null,
+const PROJECT_FOLDER_IDS: Partial<Record<string, string>> = {
+    m8: '1iMxV49fh6kmFXu0YRKzZmtjstxJ-UsQk',
+    sauna: '1mo1IwmN-jAAV-QssCAGlL5vQlugkPLm1',
+    ev: '1mp6pUCIsYKlx6Ce_tVmaxW4rhQQrvUSK',
+    taste: '16meTr6VEmNqlxJ1aPn_fowiht2AKdI5o',
 };
 
-async function getDriveFiles(): Promise<DriveFile[]> {
+async function getDriveFiles(folderId: string | undefined, orderBy = 'name'): Promise<DriveFile[]> {
     const apiKey = process.env.GOOGLE_DRIVE_API_KEY;
-    const folderId = process.env.GOOGLE_DRIVE_ARTWORK_FOLDER_ID;
     if (!apiKey || !folderId) return [];
     try {
         const params = new URLSearchParams({
             q: `'${folderId}' in parents and trashed=false`,
             key: apiKey,
             fields: 'files(id,name,mimeType)',
-            orderBy: 'createdTime desc',
+            orderBy,
             pageSize: '100',
         });
         const res = await fetch(
@@ -61,7 +60,16 @@ export default async function HomePage() {
         CORE_KEYS.map((key) => [key, { title: ab(`core.${key}.title`), desc: ab(`core.${key}.desc`) }])
     ) as Record<typeof CORE_KEYS[number], { title: string; desc: string }>;
 
-    const files = await getDriveFiles();
+    const [files, m8Files, saunaFiles, evFiles, tasteFiles] = await Promise.all([
+        getDriveFiles(process.env.GOOGLE_DRIVE_ARTWORK_FOLDER_ID, 'createdTime desc'),
+        getDriveFiles(PROJECT_FOLDER_IDS.m8),
+        getDriveFiles(PROJECT_FOLDER_IDS.sauna),
+        getDriveFiles(PROJECT_FOLDER_IDS.ev),
+        getDriveFiles(PROJECT_FOLDER_IDS.taste),
+    ]);
+    const projectFiles: Record<string, DriveFile[]> = {
+        m8: m8Files, sauna: saunaFiles, ev: evFiles, taste: tasteFiles, sds: [],
+    };
 
     return (
         <div className="flex flex-col bg-background">
@@ -108,13 +116,12 @@ export default async function HomePage() {
                         <BlurFade delay={0.35} duration={0.6}>
                             <div className="flex flex-wrap gap-3 pt-2">
                                 <Button asChild size="lg">
-                                    <a href="#work">{t('viewWork')}</a>
+                                    <a href="/Hyemin_Portfolio.pdf" download="Hyemin_Portfolio.pdf">
+                                        {t('viewWork')}
+                                    </a>
                                 </Button>
                                 <Button asChild variant="outline" size="lg">
-                                    <a
-                                        href="/portfolio.pdf"
-                                        download="Hyemin_Portfolio.pdf"
-                                    >
+                                    <a href="/resume.pdf" download="이력서.pdf">
                                         {t('downloadResume')}
                                     </a>
                                 </Button>
@@ -168,7 +175,7 @@ export default async function HomePage() {
                     </div>
 
                     {/* UX/UI Projects */}
-                    <div className="mt-12 mb-24">
+                    <div className="mt-12 mb-36">
                         <BlurFade delay={0.05} inView>
                             <h3 className="text-xs font-bold tracking-widest uppercase text-muted-foreground mb-3">
                                 {wt('projectsTitle')}
@@ -181,60 +188,32 @@ export default async function HomePage() {
                                 const subtitle = pt(`projects.${key}.subtitle`);
                                 const period = pt(`projects.${key}.period`);
                                 const description = pt(`projects.${key}.description`);
-                                const deckUrl = key !== 'sds' ? pt(`projects.${key}.deckUrl`) : null;
                                 const isPrivate = key === 'sds';
+                                const slideFiles = projectFiles[key] ?? [];
 
-                                const thumb = PROJECT_THUMBNAILS[key];
-                                const rowClass = "group border-t border-border py-8 flex flex-col sm:flex-row sm:items-start gap-6 hover:bg-muted/30 -mx-6 sm:-mx-8 px-6 sm:px-8 transition-colors";
-                                const rowInner = (
-                                    <>
-                                        <span className="text-xs text-muted-foreground font-mono w-8 shrink-0 mt-1">
-                                            {String(i + 1).padStart(2, '0')}
-                                        </span>
-                                        <div className="flex-1 min-w-0 flex flex-col sm:flex-row gap-6">
+                                const rowClass = "border-t border-border py-8 flex flex-col sm:flex-row sm:items-start gap-6 -mx-6 sm:-mx-8 px-6 sm:px-8";
+                                return (
+                                    <BlurFade key={key} delay={0.05 + i * 0.07} inView>
+                                        <div className={rowClass}>
+                                            <span className="text-xs text-muted-foreground font-mono w-8 shrink-0 mt-1">
+                                                {String(i + 1).padStart(2, '0')}
+                                            </span>
                                             <div className="flex-1 min-w-0">
                                                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
                                                     <p className="text-base font-bold text-foreground whitespace-pre-line">{subtitle}</p>
-                                                    <div className="flex items-center gap-3 shrink-0">
-                                                        <span className="text-xs text-muted-foreground">{period}</span>
-                                                        {isPrivate && (
-                                                            <span className="text-xs text-muted-foreground border border-border rounded-full px-3 py-1">
-                                                                {wt('privateNote')}
-                                                            </span>
-                                                        )}
-                                                    </div>
+                                                    <span className="text-xs text-muted-foreground shrink-0">{period}</span>
                                                 </div>
                                                 <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
-                                                {deckUrl && (
-                                                    <div className="mt-4">
-                                                        <span className="inline-flex items-center border border-foreground/40 rounded-full px-4 py-1.5 text-xs font-medium text-foreground group-hover:bg-foreground group-hover:text-background group-hover:border-foreground transition-colors">
-                                                            {wt('viewDeck')}
+                                                <div className="mt-4">
+                                                    <ProjectSlideshow files={slideFiles} label={wt('viewDeck')} />
+                                                    {isPrivate && (
+                                                        <span className="inline-flex items-center border border-border rounded-full px-4 py-1.5 text-xs text-muted-foreground">
+                                                            {wt('privateNote')}
                                                         </span>
-                                                    </div>
-                                                )}
-                                            </div>
-                                            {thumb && (
-                                                <div className="w-full sm:w-48 aspect-video rounded-md overflow-hidden bg-muted shrink-0">
-                                                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                                                    <img
-                                                        src={thumb}
-                                                        alt={subtitle}
-                                                        className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
-                                                        loading="lazy"
-                                                    />
+                                                    )}
                                                 </div>
-                                            )}
+                                            </div>
                                         </div>
-                                    </>
-                                );
-
-                                return (
-                                    <BlurFade key={key} delay={0.05 + i * 0.07} inView>
-                                        {deckUrl ? (
-                                            <a href={deckUrl} target="_blank" rel="noopener noreferrer" className={rowClass}>{rowInner}</a>
-                                        ) : (
-                                            <div className={rowClass}>{rowInner}</div>
-                                        )}
                                     </BlurFade>
                                 );
                             })}
@@ -246,7 +225,7 @@ export default async function HomePage() {
                             <a
                                 href="/Hyemin_Portfolio.pdf"
                                 download="Hyemin_Portfolio.pdf"
-                                className="inline-flex items-center gap-2 border border-border px-6 py-3 rounded-full text-sm font-medium text-muted-foreground hover:text-foreground hover:border-foreground/40 transition-colors"
+                                className="inline-flex items-center gap-2 bg-foreground text-background px-6 py-3 rounded-full text-sm font-medium hover:opacity-80 transition-opacity"
                             >
                                 {wt('viewFullPdf')} ↓
                             </a>
@@ -254,7 +233,7 @@ export default async function HomePage() {
                     </div>
 
                     {/* AI Artwork */}
-                    <div className="mb-24">
+                    <div className="mb-36">
                         <BlurFade delay={0.05} inView>
                             <div className="mb-10">
                                 <h3 className="text-xs font-bold tracking-widest uppercase text-muted-foreground mb-3">
@@ -267,7 +246,7 @@ export default async function HomePage() {
                     </div>
 
                     {/* AI Services */}
-                    <div className="mb-24">
+                    <div className="mb-36">
                         <BlurFade delay={0.05} inView>
                             <div className="mb-10">
                                 <h3 className="text-xs font-bold tracking-widest uppercase text-muted-foreground mb-3">
