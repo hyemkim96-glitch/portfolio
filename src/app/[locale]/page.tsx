@@ -7,7 +7,7 @@ import { AnimatedGradientText } from '@/components/ui/animated-gradient-text';
 import { ScrollIndicator } from '@/components/scroll-indicator';
 import { CoreCompetencies } from '@/components/core-competencies';
 import { ArtworkGallery, type DriveFile } from '@/components/artwork-gallery';
-import { ProjectSlideshow } from '@/components/project-slideshow';
+import { ProjectAccordion, type ProjectItem } from '@/components/project-accordion';
 
 const SKILLS = ['Figma', 'UX Research', 'IA Design', 'Design Systems', 'Motion Design', 'AI Design', 'Prototyping', 'Accessibility'];
 const DOMAINS = ['Automotive HMI', 'Healthcare UX', 'B2B SaaS', 'SDV Cabin UX', 'Design Tokens', 'Service Design', 'Smart Factory', 'Interaction Design'];
@@ -70,6 +70,15 @@ export default async function HomePage() {
     const projectFiles: Record<string, DriveFile[]> = {
         m8: m8Files, sauna: saunaFiles, ev: evFiles, taste: tasteFiles, sds: [],
     };
+    const projectItems: ProjectItem[] = PROJECT_KEYS.map((key, index) => ({
+        key,
+        index,
+        subtitle: pt(`projects.${key}.subtitle`),
+        period: pt(`projects.${key}.period`),
+        description: pt(`projects.${key}.description`),
+        isPrivate: key === 'sds',
+        files: projectFiles[key] ?? [],
+    }));
 
     return (
         <div className="flex flex-col bg-background">
@@ -183,42 +192,10 @@ export default async function HomePage() {
                             <p className="text-sm text-muted-foreground mb-10">{wt('projectsDescription')}</p>
                         </BlurFade>
 
-                        <div className="space-y-0">
-                            {PROJECT_KEYS.map((key, i) => {
-                                const subtitle = pt(`projects.${key}.subtitle`);
-                                const period = pt(`projects.${key}.period`);
-                                const description = pt(`projects.${key}.description`);
-                                const isPrivate = key === 'sds';
-                                const slideFiles = projectFiles[key] ?? [];
-
-                                const rowClass = "border-t border-border py-8 flex flex-col sm:flex-row sm:items-start gap-6 -mx-6 sm:-mx-8 px-6 sm:px-8";
-                                return (
-                                    <BlurFade key={key} delay={0.05 + i * 0.07} inView>
-                                        <div className={rowClass}>
-                                            <span className="text-xs text-muted-foreground font-mono w-8 shrink-0 mt-1">
-                                                {String(i + 1).padStart(2, '0')}
-                                            </span>
-                                            <div className="flex-1 min-w-0">
-                                                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
-                                                    <p className="text-base font-bold text-foreground whitespace-pre-line">{subtitle}</p>
-                                                    <span className="text-xs text-muted-foreground shrink-0">{period}</span>
-                                                </div>
-                                                <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
-                                                <div className="mt-4">
-                                                    <ProjectSlideshow files={slideFiles} label={wt('viewDeck')} />
-                                                    {isPrivate && (
-                                                        <span className="inline-flex items-center border border-border rounded-full px-4 py-1.5 text-xs text-muted-foreground">
-                                                            {wt('privateNote')}
-                                                        </span>
-                                                    )}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </BlurFade>
-                                );
-                            })}
-                            <div className="border-t border-border" />
-                        </div>
+                        <ProjectAccordion
+                            items={projectItems}
+                            privateNote={wt('privateNote')}
+                        />
 
                         {/* PDF CTA */}
                         <div className="mt-10 flex justify-start">
