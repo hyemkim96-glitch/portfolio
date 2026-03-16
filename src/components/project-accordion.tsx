@@ -18,6 +18,10 @@ function imgUrl(id: string) {
     return `https://drive.google.com/thumbnail?id=${id}&sz=w1600`;
 }
 
+function sortByName(files: DriveFile[]): DriveFile[] {
+    return [...files].sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true }));
+}
+
 export function ProjectAccordion({
     items,
     privateNote,
@@ -27,15 +31,27 @@ export function ProjectAccordion({
 }) {
     const [openKey, setOpenKey] = useState<string | null>(null);
     const containerRef = useRef<HTMLDivElement>(null);
+    const savedScrollY = useRef<number>(0);
+
+    const open = (key: string) => {
+        savedScrollY.current = window.scrollY;
+        setOpenKey(key);
+    };
+
+    const close = () => {
+        setOpenKey(null);
+        requestAnimationFrame(() => window.scrollTo({ top: savedScrollY.current, behavior: 'instant' }));
+    };
 
     useEffect(() => {
         const onDoc = (e: MouseEvent) => {
             if (openKey && containerRef.current && !containerRef.current.contains(e.target as Node)) {
-                setOpenKey(null);
+                close();
             }
         };
         document.addEventListener('mousedown', onDoc);
         return () => document.removeEventListener('mousedown', onDoc);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [openKey]);
 
     return (
@@ -50,7 +66,7 @@ export function ProjectAccordion({
                             {/* Row header */}
                             <div
                                 className={`py-8 flex flex-col sm:flex-row sm:items-start gap-6 -mx-6 sm:-mx-8 px-6 sm:px-8 transition-colors hover:bg-muted/30 ${hasFiles ? 'cursor-pointer' : 'cursor-default'}`}
-                                onClick={() => { if (hasFiles) setOpenKey(isOpen ? null : item.key); }}
+                                onClick={() => { if (hasFiles) { isOpen ? close() : open(item.key); } }}
                             >
                                 <span className="text-xs text-muted-foreground font-mono w-8 shrink-0 mt-1">
                                     {String(item.index + 1).padStart(2, '0')}
@@ -85,7 +101,7 @@ export function ProjectAccordion({
                                     onClick={e => e.stopPropagation()}
                                 >
                                     <div className="flex flex-col gap-2 pt-4">
-                                        {item.files.map(file => (
+                                        {sortByName(item.files).map(file => (
                                             /* eslint-disable-next-line @next/next/no-img-element */
                                             <img
                                                 key={file.id}
@@ -98,7 +114,7 @@ export function ProjectAccordion({
                                     </div>
                                     <div className="mt-10 flex justify-center">
                                         <button
-                                            onClick={() => setOpenKey(null)}
+                                            onClick={close}
                                             className="inline-flex items-center border border-border rounded-full px-8 py-2.5 text-xs text-muted-foreground hover:text-foreground hover:border-foreground/40 transition-colors"
                                         >
                                             닫기
