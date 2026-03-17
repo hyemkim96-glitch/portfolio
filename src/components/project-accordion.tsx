@@ -115,20 +115,20 @@ export function ProjectAccordion({
                                 onMouseLeave={hasFiles ? handleMouseLeave : undefined}
                             >
                                 <div className="grid grid-cols-1 md:grid-cols-[1fr_1.4fr] gap-6 md:gap-16">
-                                    {/* Left: number + title + subtitle */}
+                                    {/* Left: number + subtitle (big title) + title (badge) */}
                                     <div className="flex flex-col justify-center gap-3">
                                         <span className="text-xs text-muted-foreground font-mono">
                                             {String(item.index + 1).padStart(2, '0')}
                                         </span>
                                         <h3
-                                            className="font-bold text-foreground leading-tight tracking-tight"
+                                            className="font-bold text-foreground leading-tight tracking-tight whitespace-pre-line"
                                             style={{ fontSize: 'clamp(1.6rem, 2.8vw, 2.2rem)' }}
                                         >
-                                            {item.title}
-                                        </h3>
-                                        <p className="text-sm text-muted-foreground whitespace-pre-line leading-relaxed">
                                             {item.subtitle}
-                                        </p>
+                                        </h3>
+                                        <span className="inline-flex w-fit text-[10px] font-medium tracking-widest uppercase text-muted-foreground border border-border rounded-full px-2.5 py-1">
+                                            {item.title}
+                                        </span>
                                     </div>
 
                                     {/* Right: date + description + actions */}
