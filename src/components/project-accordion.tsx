@@ -122,7 +122,7 @@ export function ProjectAccordion({
                                         </span>
                                         <h3
                                             className="font-bold text-foreground leading-tight tracking-tight whitespace-pre-line"
-                                            style={{ fontSize: 'clamp(1.6rem, 2.8vw, 2.2rem)' }}
+                                            style={{ fontSize: 'clamp(1.1rem, 1.8vw, 1.4rem)' }}
                                         >
                                             {item.subtitle}
                                         </h3>
