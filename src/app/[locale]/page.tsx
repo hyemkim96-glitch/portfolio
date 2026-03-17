@@ -1,3 +1,4 @@
+import Spline from '@splinetool/react-spline/next';
 import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
 import { GNB } from '@/components/gnb';
@@ -98,13 +99,7 @@ export default async function HomePage() {
             >
                 {/* Spline background animation */}
                 <div className="absolute inset-0 pointer-events-none select-none">
-                    <iframe
-                        src="https://my.spline.design/retrofuturismbganimation-PNTQWdgBeFjzMDRLm6myb1G1/"
-                        frameBorder="0"
-                        className="absolute top-0 right-0 w-full h-full md:w-[65%] opacity-60"
-                        style={{ border: 'none' }}
-                        title="Background animation"
-                    />
+                    <Spline scene="https://prod.spline.design/GqOYlG6mhkqg-TaH/scene.splinecode" />
                 </div>
 
                 <div className="mx-auto w-full max-w-5xl relative z-10">
