@@ -93,10 +93,21 @@ export default async function HomePage() {
             ═══════════════════════════════════════ */}
             <section
                 id="hero"
-                className="relative flex flex-col justify-center min-h-[100svh] px-6 sm:px-8"
+                className="relative flex flex-col justify-center min-h-[100svh] px-6 sm:px-8 overflow-hidden"
                 style={{ paddingTop: '3.5rem', paddingBottom: '15vh' }}
             >
-                <div className="mx-auto w-full max-w-5xl">
+                {/* Spline background animation */}
+                <div className="absolute inset-0 pointer-events-none select-none">
+                    <iframe
+                        src="https://my.spline.design/retrofuturismbganimation-PNTQWdgBeFjzMDRLm6myb1G1/"
+                        frameBorder="0"
+                        className="absolute top-0 right-0 w-full h-full md:w-[65%] opacity-60"
+                        style={{ border: 'none' }}
+                        title="Background animation"
+                    />
+                </div>
+
+                <div className="mx-auto w-full max-w-5xl relative z-10">
                     <div className="space-y-8 max-w-3xl">
                         <BlurFade delay={0.05} duration={0.5}>
                             <div className="inline-flex items-center rounded-full border border-border bg-secondary px-4 py-1.5">
