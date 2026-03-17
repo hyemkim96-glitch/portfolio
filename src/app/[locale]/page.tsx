@@ -62,7 +62,7 @@ export default async function HomePage() {
     ) as Record<typeof CORE_KEYS[number], { title: string; desc: string }>;
 
     const [files, m8Files, saunaFiles, evFiles, tasteFiles] = await Promise.all([
-        getDriveFiles(process.env.GOOGLE_DRIVE_ARTWORK_FOLDER_ID, 'createdTime desc', 0),
+        getDriveFiles(process.env.GOOGLE_DRIVE_ARTWORK_FOLDER_ID, 'name', 0),
         getDriveFiles(PROJECT_FOLDER_IDS.m8),
         getDriveFiles(PROJECT_FOLDER_IDS.sauna),
         getDriveFiles(PROJECT_FOLDER_IDS.ev),
