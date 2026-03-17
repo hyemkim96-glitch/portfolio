@@ -41,7 +41,7 @@ export function CoreCompetencies({ translations }: Props) {
                                 >
                                     {translations[key].title}
                                 </h3>
-                                <span className="inline-flex w-fit text-[10px] font-medium tracking-widest uppercase text-muted-foreground border border-border rounded-full px-2.5 py-1">
+                                <span className="inline-flex w-fit text-[12px] font-medium tracking-widest uppercase text-muted-foreground border border-border rounded-full px-2.5 py-1">
                                     {TAGS[key]}
                                 </span>
                             </div>

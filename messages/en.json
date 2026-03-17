@@ -93,8 +93,8 @@
                 "tags": ["Healthcare", "Sauna Booth"],
                 "period": "2025.04 ~ 2025.12",
                 "description": "Shifted from functional roles to emotional immersion strategies using confined space. Enhanced usability with context-aware touchpoints and AI-generated media.",
-                "roles": "Product Planning (70%), UX Planning (100%), Content Creation, UI Design (100%), Motion Graphics (50%), QA (100%)",
-                "contribution": "Product Planning 70% · UX Planning 100% · UI Design 100% · QA 100%",
+                "roles": "Product Planning (30%), UX Planning (100%), Content Creation, UI Design (100%), Motion Graphics (50%), QA (100%)",
+                "contribution": "Product Planning 30% · UX Planning 100% · UI Design 100% · QA 100%",
                 "deckUrl": "https://www.figma.com/deck/aKiYmQ1j0i08OiRxcuecmC"
             },
             "ev": {
@@ -125,6 +125,7 @@
                 "tags": ["LaaS", "Web"],
                 "period": "2023.01 ~ 2024.05",
                 "description": "A logistics platform project balancing operator and shipper requirements on a unified data structure. (Content is private due to security and ongoing development.)",
+                "contribution": "In progress",
                 "isPrivate": true
             }
         }

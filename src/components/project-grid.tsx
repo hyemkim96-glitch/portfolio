@@ -29,12 +29,12 @@ export function ProjectGrid() {
                                 <CardHeader className="pb-3">
                                     <div className="flex justify-between items-start mb-2">
                                         <div className="flex flex-col gap-1">
-                                            <span className="text-[11px] uppercase tracking-wider text-muted-foreground font-medium">
+                                            <span className="text-[12px] uppercase tracking-wider text-muted-foreground font-medium">
                                                 {t(`projects.${key}.period`)}
                                             </span>
                                         </div>
                                         {isPrivate && (
-                                            <span className="flex items-center gap-1 text-[11px] uppercase tracking-wider text-destructive/70 font-bold">
+                                            <span className="flex items-center gap-1 text-[12px] uppercase tracking-wider text-destructive/70 font-bold">
                                                 <Lock className="w-2.5 h-2.5" /> Confidential
                                             </span>
                                         )}
@@ -64,7 +64,7 @@ export function ProjectGrid() {
                                             {t('viewDeck')}
                                         </Button>
                                     ) : (
-                                        <div className="w-full py-4 px-3 border border-dashed border-border rounded-md text-[11px] text-center text-muted-foreground/60 uppercase tracking-widest font-medium">
+                                        <div className="w-full py-4 px-3 border border-dashed border-border rounded-md text-[12px] text-center text-muted-foreground/60 uppercase tracking-widest font-medium">
                                             Deck Restricted
                                         </div>
                                     )}
@@ -80,7 +80,7 @@ export function ProjectGrid() {
                 <div className="fixed inset-0 z-[100] flex items-center justify-center bg-background/95 backdrop-blur-sm p-4 md:p-10 animate-in fade-in duration-300">
                     <div className="relative w-full h-full max-w-7xl flex flex-col gap-4">
                         <div className="flex justify-between items-center">
-                            <h3 className="text-[11px] uppercase tracking-widest text-muted-foreground font-bold">Portfolio Viewer</h3>
+                            <h3 className="text-[12px] uppercase tracking-widest text-muted-foreground font-bold">Portfolio Viewer</h3>
                             <Button
                                 variant="ghost"
                                 size="icon"

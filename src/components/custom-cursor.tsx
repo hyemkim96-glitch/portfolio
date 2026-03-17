@@ -44,7 +44,7 @@ export function CustomCursor() {
 
     return (
         <div
-            className="fixed z-[9999] pointer-events-none flex items-center justify-center rounded-full bg-foreground text-background text-[10px] font-medium tracking-widest uppercase select-none"
+            className="fixed z-[9999] pointer-events-none flex items-center justify-center rounded-full bg-foreground text-background text-[12px] font-medium tracking-widest uppercase select-none"
             style={{
                 width: '64px',
                 height: '64px',
