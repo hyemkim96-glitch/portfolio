@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { LayoutWrapper } from '@/components/layout-wrapper';
 import { Button } from '@/components/ui/button';
@@ -10,6 +11,16 @@ import { ArrowUpRight } from 'lucide-react';
 
 export default function ContactPage() {
     const t = useTranslations('Contact');
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [message, setMessage] = useState('');
+
+    function handleSubmit(e: React.FormEvent) {
+        e.preventDefault();
+        const subject = encodeURIComponent(`[Portfolio] ${name}님의 문의`);
+        const body = encodeURIComponent(`이름: ${name}\n이메일: ${email}\n\n${message}`);
+        window.location.href = `mailto:hyem.kim96@gmail.com?subject=${subject}&body=${body}`;
+    }
 
     return (
         <LayoutWrapper>
@@ -20,13 +31,15 @@ export default function ContactPage() {
                 </div>
 
                 <div className="max-w-lg space-y-6">
-                    <form className="space-y-5">
+                    <form className="space-y-5" onSubmit={handleSubmit}>
                         <div className="space-y-2">
                             <Label htmlFor="name">{t('labelName')}</Label>
                             <Input
                                 id="name"
                                 type="text"
                                 placeholder={t('placeholderName')}
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
                             />
                         </div>
 
@@ -36,6 +49,8 @@ export default function ContactPage() {
                                 id="email"
                                 type="email"
                                 placeholder={t('placeholderEmail')}
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
                             />
                         </div>
 
@@ -46,13 +61,14 @@ export default function ContactPage() {
                                 rows={5}
                                 placeholder={t('placeholderMessage')}
                                 className="resize-none"
+                                value={message}
+                                onChange={(e) => setMessage(e.target.value)}
                             />
                         </div>
 
                         <Button
                             type="submit"
                             className="w-full sm:w-auto"
-                            onClick={(e) => e.preventDefault()}
                         >
                             {t('executeSend')}
                         </Button>
