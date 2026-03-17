@@ -66,7 +66,7 @@
         "artworkTitle": "AI Artwork",
         "artworkDescription": "Images and videos created with AI for use in real-world projects.",
         "servicesTitle": "AI Services",
-        "servicesDescription": "Services built using AI to solve practical problems or experiment with new user experiences.",
+        "servicesDescription": "Services that attempt to solve real user problems using AI agents.",
         "viewDeck": "View Slides",
         "visitSite": "Visit Site",
         "privateNote": "Content is private due to security constraints.",
@@ -128,7 +128,7 @@
     },
     "AISites": {
         "title": "AI Service",
-        "description": "Services built using AI to solve practical problems or experiment with new user experiences.",
+        "description": "Services that attempt to solve real user problems using AI agents.",
         "visitSite": "Visit Site",
         "sites": {
             "chartstory": {

@@ -66,7 +66,7 @@
         "artworkTitle": "AI 아트워크",
         "artworkDescription": "AI를 활용해 실무 프로젝트에 필요한 이미지와 영상을 제작하였습니다.",
         "servicesTitle": "AI 서비스",
-        "servicesDescription": "AI 기술을 활용해 실무 문제를 해결하거나 사용자 경험을 실험한 서비스들입니다.",
+        "servicesDescription": "AI 에이전트를 활용해 사용자가 겪고 있는 문제를 해결하려 시도한 서비스들입니다.",
         "viewDeck": "슬라이드 보기",
         "visitSite": "사이트 방문",
         "privateNote": "보안 사항으로 상세 내용은 비공개입니다.",
@@ -128,7 +128,7 @@
     },
     "AISites": {
         "title": "AI 서비스",
-        "description": "AI 기술을 활용해 실무 문제를 해결하거나 사용자 경험을 실험한 서비스들입니다.",
+        "description": "AI 에이전트를 활용해 사용자가 겪고 있는 문제를 해결하려 시도한 서비스들입니다.",
         "visitSite": "사이트 방문",
         "sites": {
             "chartstory": {
