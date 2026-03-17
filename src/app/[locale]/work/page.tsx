@@ -62,7 +62,7 @@ export default async function WorkPage() {
             {/* ── UX/UI Projects ── */}
             <section className="mb-24">
                 <BlurFade delay={0.05} inView>
-                    <h2 className="text-sm font-medium tracking-widest uppercase text-muted-foreground mb-3">
+                    <h2 className="text-base font-medium tracking-widest uppercase text-muted-foreground mb-3">
                         {t('projectsTitle')}
                     </h2>
                     <p className="text-sm text-muted-foreground mb-10">{t('projectsDescription')}</p>
@@ -119,7 +119,7 @@ export default async function WorkPage() {
             <section className="mb-24">
                 <BlurFade delay={0.05} inView>
                     <div className="mb-10">
-                        <h2 className="text-sm font-medium tracking-widest uppercase text-muted-foreground mb-3">
+                        <h2 className="text-base font-medium tracking-widest uppercase text-muted-foreground mb-3">
                             {t('artworkTitle')}
                         </h2>
                         <p className="text-sm text-muted-foreground">{t('artworkDescription')}</p>
@@ -132,7 +132,7 @@ export default async function WorkPage() {
             <section className="mb-16">
                 <BlurFade delay={0.05} inView>
                     <div className="mb-10">
-                        <h2 className="text-sm font-medium tracking-widest uppercase text-muted-foreground mb-3">
+                        <h2 className="text-base font-medium tracking-widest uppercase text-muted-foreground mb-3">
                             {t('servicesTitle')}
                         </h2>
                         <p className="text-sm text-muted-foreground">{t('servicesDescription')}</p>
