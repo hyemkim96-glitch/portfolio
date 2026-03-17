@@ -96,8 +96,8 @@ html {
     --color-input: var(--input);
     --color-ring: var(--ring);
 
-    --font-sans: 'PyeojinGothic', 'Noto Sans KR', sans-serif;
-    --font-mono: 'PyeojinGothic', 'Noto Sans KR', sans-serif;
+    --font-sans: 'PyeojinGothic', sans-serif;
+    --font-mono: 'PyeojinGothic', sans-serif;
 
     --radius-sm: calc(var(--radius) - 2px);
     --radius-md: var(--radius);
