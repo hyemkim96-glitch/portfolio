@@ -240,15 +240,15 @@ export default async function HomePage() {
                                         href={AI_SERVICE_URLS[key]}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="group flex items-start gap-6 border-t border-border py-8 hover:bg-muted/30 -mx-6 sm:-mx-8 px-6 sm:px-8 transition-colors"
+                                        className="group flex items-stretch gap-6 border-t border-border py-8 hover:bg-muted/30 -mx-6 sm:-mx-8 px-6 sm:px-8 transition-colors"
                                     >
                                         {/* Thumbnail */}
-                                        <div className="w-36 sm:w-48 aspect-video rounded-md overflow-hidden bg-muted shrink-0">
+                                        <div className="w-36 sm:w-48 rounded-md overflow-hidden bg-muted shrink-0">
                                             {/* eslint-disable-next-line @next/next/no-img-element */}
                                             <img
                                                 src={`https://api.microlink.io/?url=${encodeURIComponent(AI_SERVICE_URLS[key])}&screenshot=true&meta=false&embed=screenshot.url`}
                                                 alt={at(`sites.${key}.name`)}
-                                                className="w-full h-full object-cover"
+                                                className="w-full h-full object-cover object-top"
                                                 loading="lazy"
                                             />
                                         </div>
