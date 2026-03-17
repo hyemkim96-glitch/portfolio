@@ -75,6 +75,7 @@ export default async function HomePage() {
         index,
         title: pt(`projects.${key}.title`),
         subtitle: pt(`projects.${key}.subtitle`),
+        tags: (pt.raw(`projects.${key}.tags`) as string[]) ?? [],
         period: pt(`projects.${key}.period`),
         description: pt(`projects.${key}.description`),
         isPrivate: key === 'sds',

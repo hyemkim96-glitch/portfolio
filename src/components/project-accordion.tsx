@@ -10,6 +10,7 @@ export interface ProjectItem {
     index: number;
     title: string;
     subtitle: string;
+    tags: string[];
     period: string;
     description: string;
     isPrivate: boolean;
@@ -94,9 +95,13 @@ export function ProjectAccordion({
                                         >
                                             {item.subtitle}
                                         </h3>
-                                        <span className="inline-flex w-fit text-[10px] font-medium tracking-widest uppercase text-muted-foreground border border-border rounded-full px-2.5 py-1">
-                                            {item.title}
-                                        </span>
+                                        <div className="flex flex-wrap gap-1.5">
+                                            {item.tags.map((tag) => (
+                                                <span key={tag} className="inline-flex w-fit text-[10px] font-medium tracking-widest uppercase text-muted-foreground border border-border rounded-full px-2.5 py-1">
+                                                    {tag}
+                                                </span>
+                                            ))}
+                                        </div>
                                     </div>
 
                                     {/* Right: date + description + actions */}
