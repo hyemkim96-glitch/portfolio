@@ -97,14 +97,14 @@ export function ProjectAccordion({
                                         >
                                             {item.subtitle}
                                         </h3>
-                                        <div className="flex flex-wrap items-center gap-1.5">
+                                        <div className="flex items-center gap-1.5 overflow-hidden">
                                             {item.tags.map((tag) => (
-                                                <span key={tag} className="inline-flex w-fit text-[10px] font-medium tracking-widest uppercase text-muted-foreground border border-border rounded-full px-2.5 py-1">
+                                                <span key={tag} className="shrink-0 inline-flex w-fit text-[12px] font-medium tracking-widest uppercase text-muted-foreground border border-border rounded-full px-2.5 py-1">
                                                     {tag}
                                                 </span>
                                             ))}
                                             {item.contribution && (
-                                                <span className="text-[10px] text-muted-foreground/70 font-mono ml-0.5">
+                                                <span className="text-[12px] text-muted-foreground/70 font-mono ml-0.5 truncate min-w-0">
                                                     {item.contribution}
                                                 </span>
                                             )}
@@ -145,6 +145,7 @@ export function ProjectAccordion({
                                                 alt={file.name}
                                                 width={1600}
                                                 height={900}
+                                                unoptimized
                                                 className="w-full h-auto cursor-zoom-in"
                                                 style={{ height: 'auto' }}
                                                 onClick={e => { e.stopPropagation(); setLightbox(file); }}
@@ -186,6 +187,7 @@ export function ProjectAccordion({
                     alt={lightbox.name}
                     width={1920}
                     height={1080}
+                    unoptimized
                     className="max-w-full max-h-screen object-contain"
                     style={{ width: 'auto', height: 'auto', maxHeight: '100vh', maxWidth: '100vw' }}
                     onClick={e => e.stopPropagation()}

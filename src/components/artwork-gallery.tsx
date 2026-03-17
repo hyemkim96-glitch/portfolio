@@ -91,6 +91,7 @@ export function ArtworkGallery({ files }: Props) {
                                 src={thumbnailUrl(file.id)}
                                 alt={file.name}
                                 fill
+                                unoptimized
                                 sizes="(max-width: 768px) 33vw, 300px"
                                 className="object-cover group-hover:scale-[1.03] transition-transform duration-300"
                             />
@@ -143,6 +144,7 @@ export function ArtworkGallery({ files }: Props) {
                                 alt={current.name}
                                 width={2000}
                                 height={1500}
+                                unoptimized
                                 className="max-w-full max-h-[85vh] object-contain rounded-md"
                                 style={{ width: 'auto', height: 'auto', maxHeight: '85vh' }}
                             />
