@@ -2,6 +2,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { ThemeProvider } from '@/components/theme-provider';
 import { FloatingContact } from '@/components/floating-contact';
+import { CustomCursor } from '@/components/custom-cursor';
 import '@/app/globals.css';
 import { Metadata } from 'next';
 
@@ -36,6 +37,7 @@ export default async function LocaleLayout({
                     <NextIntlClientProvider messages={messages}>
                         {children}
                         <FloatingContact />
+                        <CustomCursor />
                     </NextIntlClientProvider>
                 </ThemeProvider>
             </body>

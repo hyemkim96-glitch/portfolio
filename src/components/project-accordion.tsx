@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { X } from 'lucide-react';
 import { BlurFade } from '@/components/ui/blur-fade';
 import type { DriveFile } from './artwork-gallery';
@@ -37,7 +37,6 @@ export function ProjectAccordion({
 }) {
     const [openKeys, setOpenKeys] = useState<Set<string>>(new Set());
     const [lightbox, setLightbox] = useState<DriveFile | null>(null);
-    const [cursor, setCursor] = useState<{ x: number; y: number; visible: boolean }>({ x: 0, y: 0, visible: false });
     const containerRef = useRef<HTMLDivElement>(null);
     const savedScrollY = useRef<Map<string, number>>(new Map());
 
@@ -68,36 +67,8 @@ export function ProjectAccordion({
         return () => document.removeEventListener('keydown', onKey);
     }, [lightbox]);
 
-    const handleMouseMove = useCallback((e: React.MouseEvent) => {
-        setCursor(prev => ({ ...prev, x: e.clientX, y: e.clientY }));
-    }, []);
-
-    const handleMouseEnter = useCallback(() => {
-        setCursor(prev => ({ ...prev, visible: true }));
-    }, []);
-
-    const handleMouseLeave = useCallback(() => {
-        setCursor(prev => ({ ...prev, visible: false }));
-    }, []);
-
     return (
         <>
-        {/* Custom cursor */}
-        {cursor.visible && (
-            <div
-                className="fixed z-50 pointer-events-none flex items-center justify-center rounded-full bg-foreground text-background text-[10px] font-medium tracking-widest uppercase"
-                style={{
-                    width: '64px',
-                    height: '64px',
-                    left: cursor.x - 32,
-                    top: cursor.y - 32,
-                    transition: 'opacity 0.15s',
-                }}
-            >
-                click
-            </div>
-        )}
-
         <div ref={containerRef}>
             {items.map((item) => {
                 const isOpen = openKeys.has(item.key);
@@ -108,11 +79,8 @@ export function ProjectAccordion({
                         <div className="border-t border-border">
                             {/* Row header */}
                             <div
-                                className={`py-10 -mx-6 sm:-mx-8 px-6 sm:px-8 transition-colors hover:bg-muted/30 ${hasFiles ? 'cursor-none' : 'cursor-default'}`}
+                                className={`py-10 -mx-6 sm:-mx-8 px-6 sm:px-8 transition-colors hover:bg-muted/30 ${hasFiles ? 'cursor-pointer' : 'cursor-default'}`}
                                 onClick={() => { if (hasFiles) { isOpen ? closeItem(item.key) : openItem(item.key); } }}
-                                onMouseMove={hasFiles ? handleMouseMove : undefined}
-                                onMouseEnter={hasFiles ? handleMouseEnter : undefined}
-                                onMouseLeave={hasFiles ? handleMouseLeave : undefined}
                             >
                                 <div className="grid grid-cols-1 md:grid-cols-[1fr_1.4fr] gap-6 md:gap-16">
                                     {/* Left: number + subtitle (big title) + title (badge) */}
