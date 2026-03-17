@@ -17,7 +17,6 @@ export function Footer() {
                         <Link href={`/${locale}/portfolio`} className="hover:text-foreground transition-colors">{t('portfolio')}</Link>
                         <Link href={`/${locale}/contact`} className="hover:text-foreground transition-colors">{t('contact')}</Link>
                         <a href="https://drive.google.com/file/d/1ixfvxceh_CsJ6phMqhGQA-JNm53gWdbZ/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">{t('resume')}</a>
-                        <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">GitHub</a>
                         <a href="https://www.linkedin.com/in/hyemin-kim-bb2a0123a" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">LinkedIn</a>
                     </div>
                 </div>
