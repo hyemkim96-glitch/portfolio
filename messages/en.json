@@ -80,6 +80,7 @@
             "m8": {
                 "title": "M8",
                 "subtitle": "New Massage Chair UX/UI\nFocusing on distraction-free relaxation",
+                "tags": ["Healthcare", "Massage Chair"],
                 "period": "2024.06 ~ 2024.12",
                 "description": "Focused on the essence of rest by removing all elements that cause 'control fatigue'. Identified physical and cognitive barriers through data from 300 users and established intuitive PUI.",
                 "roles": "UX Planning (100%), UI Design (100%), QA (70%)",
@@ -87,7 +88,8 @@
             },
             "sauna": {
                 "title": "Sauna Booth",
-                "subtitle": "Personalized Immersion Experience\n1-person sauna booth UX/UI based on behavior & bio-signals",
+                "subtitle": "Behavior & Bio-signal Based\n1-person Sauna Booth UX/UI",
+                "tags": ["Healthcare", "Sauna Booth"],
                 "period": "2025.04 ~ 2025.12",
                 "description": "Shifted from functional roles to emotional immersion strategies using confined space. Enhanced usability with context-aware touchpoints and AI-generated media.",
                 "roles": "Product Planning (70%), UX Planning (100%), Content Creation, UI Design (100%), Motion Graphics (50%), QA (100%)",
@@ -96,6 +98,7 @@
             "ev": {
                 "title": "EV Charging",
                 "subtitle": "Smart Mobility Service\nEnhancing positive perception of EV charging experience",
+                "tags": ["EV", "Charging Service"],
                 "period": "2024.01 ~ 2024.06",
                 "description": "Structured EV charging pain points through observation and surveys. Designed integrated solutions for info overload and standby transitions based on IVI systems.",
                 "team": "Team of 4",
@@ -105,6 +108,7 @@
             "taste": {
                 "title": "Taste Platform",
                 "subtitle": "Matching Community Service\nFinding the perfect taste and community for users",
+                "tags": ["Community Platform", "Mobile"],
                 "period": "2024.01 ~ 2024.06",
                 "description": "Structured community participation journeys into before/during/after phases. Designed scenarios covering AI retrospectives and personalized recommendations.",
                 "team": "Team of 4",
@@ -113,7 +117,8 @@
             },
             "sds": {
                 "title": "H9 / Samsung SDS",
-                "subtitle": "Logistics Platform (LaaS) Fulfillment Service UX/UI Design",
+                "subtitle": "Logistics Platform (LaaS) Fulfillment Service\nUX/UI Design",
+                "tags": ["LaaS", "Web"],
                 "period": "2023.01 ~ 2024.05",
                 "description": "A logistics platform project balancing operator and shipper requirements on a unified data structure. (Content is private due to security and ongoing development.)",
                 "isPrivate": true

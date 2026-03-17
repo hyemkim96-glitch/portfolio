@@ -73,7 +73,9 @@ export default async function HomePage() {
     const projectItems: ProjectItem[] = PROJECT_KEYS.map((key, index) => ({
         key,
         index,
+        title: pt(`projects.${key}.title`),
         subtitle: pt(`projects.${key}.subtitle`),
+        tags: (pt.raw(`projects.${key}.tags`) as string[]) ?? [],
         period: pt(`projects.${key}.period`),
         description: pt(`projects.${key}.description`),
         isPrivate: key === 'sds',
@@ -186,7 +188,7 @@ export default async function HomePage() {
                     {/* UX/UI Projects */}
                     <div className="mt-12 mb-36">
                         <BlurFade delay={0.05} inView>
-                            <h3 className="text-xs font-bold tracking-widest uppercase text-muted-foreground mb-3">
+                            <h3 className="text-base font-bold tracking-widest uppercase text-muted-foreground mb-3">
                                 {wt('projectsTitle')}
                             </h3>
                             <p className="text-sm text-muted-foreground mb-10">{wt('projectsDescription')}</p>
@@ -213,7 +215,7 @@ export default async function HomePage() {
                     <div className="mb-36">
                         <BlurFade delay={0.05} inView>
                             <div className="mb-10">
-                                <h3 className="text-xs font-bold tracking-widest uppercase text-muted-foreground mb-3">
+                                <h3 className="text-base font-bold tracking-widest uppercase text-muted-foreground mb-3">
                                     {wt('artworkTitle')}
                                 </h3>
                                 <p className="text-sm text-muted-foreground">{wt('artworkDescription')}</p>
@@ -226,7 +228,7 @@ export default async function HomePage() {
                     <div className="mb-36">
                         <BlurFade delay={0.05} inView>
                             <div className="mb-10">
-                                <h3 className="text-xs font-bold tracking-widest uppercase text-muted-foreground mb-3">
+                                <h3 className="text-base font-bold tracking-widest uppercase text-muted-foreground mb-3">
                                     {wt('servicesTitle')}
                                 </h3>
                                 <p className="text-sm text-muted-foreground">{wt('servicesDescription')}</p>
@@ -240,15 +242,15 @@ export default async function HomePage() {
                                         href={AI_SERVICE_URLS[key]}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="group flex items-start gap-6 border-t border-border py-8 hover:bg-muted/30 -mx-6 sm:-mx-8 px-6 sm:px-8 transition-colors"
+                                        className="group flex items-stretch gap-6 border-t border-border py-8 hover:bg-muted/30 -mx-6 sm:-mx-8 px-6 sm:px-8 transition-colors"
                                     >
                                         {/* Thumbnail */}
-                                        <div className="w-36 sm:w-48 aspect-video rounded-md overflow-hidden bg-muted shrink-0">
+                                        <div className="w-36 sm:w-48 rounded-md overflow-hidden bg-muted shrink-0">
                                             {/* eslint-disable-next-line @next/next/no-img-element */}
                                             <img
                                                 src={`https://api.microlink.io/?url=${encodeURIComponent(AI_SERVICE_URLS[key])}&screenshot=true&meta=false&embed=screenshot.url`}
                                                 alt={at(`sites.${key}.name`)}
-                                                className="w-full h-full object-cover"
+                                                className="w-full h-full object-cover object-top"
                                                 loading="lazy"
                                             />
                                         </div>

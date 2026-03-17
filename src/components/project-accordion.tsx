@@ -1,14 +1,16 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { X, ChevronDown } from 'lucide-react';
+import { X } from 'lucide-react';
 import { BlurFade } from '@/components/ui/blur-fade';
 import type { DriveFile } from './artwork-gallery';
 
 export interface ProjectItem {
     key: string;
     index: number;
+    title: string;
     subtitle: string;
+    tags: string[];
     period: string;
     description: string;
     isPrivate: boolean;
@@ -78,32 +80,47 @@ export function ProjectAccordion({
                         <div className="border-t border-border">
                             {/* Row header */}
                             <div
-                                className={`py-8 flex flex-col sm:flex-row sm:items-start gap-6 -mx-6 sm:-mx-8 px-6 sm:px-8 transition-colors hover:bg-muted/30 ${hasFiles ? 'cursor-pointer' : 'cursor-default'}`}
+                                className={`py-10 -mx-6 sm:-mx-8 px-6 sm:px-8 transition-colors hover:bg-muted/30 ${hasFiles ? 'cursor-pointer' : 'cursor-default'}`}
                                 onClick={() => { if (hasFiles) { isOpen ? closeItem(item.key) : openItem(item.key); } }}
                             >
-                                <span className="text-xs text-muted-foreground font-mono w-8 shrink-0 mt-1">
-                                    {String(item.index + 1).padStart(2, '0')}
-                                </span>
-                                <div className="flex-1 min-w-0">
-                                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
-                                        <p className="text-base font-bold text-foreground whitespace-pre-line">{item.subtitle}</p>
-                                        <div className="flex items-center gap-3 shrink-0">
-                                            <span className="text-xs text-muted-foreground">{item.period}</span>
-                                            {hasFiles && (
-                                                <ChevronDown
-                                                    className={`h-4 w-4 text-muted-foreground transition-transform duration-300 ${isOpen ? 'rotate-180' : 'rotate-0'}`}
-                                                />
-                                            )}
+                                <div className="grid grid-cols-1 md:grid-cols-[1fr_1.4fr] gap-6 md:gap-16">
+                                    {/* Left: number + subtitle (big title) + title (badge) */}
+                                    <div className="flex flex-col justify-center gap-3">
+                                        <span className="text-xs text-muted-foreground font-mono">
+                                            {String(item.index + 1).padStart(2, '0')}
+                                        </span>
+                                        <h3
+                                            className="font-bold text-foreground leading-tight tracking-tight whitespace-pre-line"
+                                            style={{ fontSize: 'clamp(1.1rem, 1.8vw, 1.4rem)' }}
+                                        >
+                                            {item.subtitle}
+                                        </h3>
+                                        <div className="flex flex-wrap gap-1.5">
+                                            {item.tags.map((tag) => (
+                                                <span key={tag} className="inline-flex w-fit text-[10px] font-medium tracking-widest uppercase text-muted-foreground border border-border rounded-full px-2.5 py-1">
+                                                    {tag}
+                                                </span>
+                                            ))}
                                         </div>
                                     </div>
-                                    <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
-                                    {item.isPrivate && (
-                                        <div className="mt-4">
-                                            <span className="inline-flex items-center border border-border rounded-full px-4 py-1.5 text-xs text-muted-foreground">
+
+                                    {/* Right: date + description + actions */}
+                                    <div className="flex flex-col justify-center gap-3">
+                                        <span className="text-xs text-muted-foreground">
+                                            {item.period}
+                                        </span>
+                                        <p
+                                            className="text-sm md:text-base text-muted-foreground leading-relaxed"
+                                            style={{ wordBreak: 'keep-all', overflowWrap: 'break-word' }}
+                                        >
+                                            {item.description}
+                                        </p>
+                                        {item.isPrivate && (
+                                            <span className="inline-flex w-fit items-center border border-border rounded-full px-4 py-1.5 text-xs text-muted-foreground">
                                                 {privateNote}
                                             </span>
-                                        </div>
-                                    )}
+                                        )}
+                                    </div>
                                 </div>
                             </div>
 

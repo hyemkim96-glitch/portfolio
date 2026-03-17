@@ -21,7 +21,7 @@ export function CoreCompetencies({ translations }: Props) {
     return (
         <section className="py-16">
             <BlurFade delay={0.05} inView>
-                <p className="text-xs text-muted-foreground font-medium tracking-widest uppercase mb-12">
+                <p className="text-base text-muted-foreground font-medium tracking-widest uppercase mb-12">
                     핵심 역량
                 </p>
             </BlurFade>
