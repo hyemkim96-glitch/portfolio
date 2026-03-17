@@ -26,7 +26,7 @@ const PROJECT_FOLDER_IDS: Partial<Record<string, string>> = {
     taste: '16meTr6VEmNqlxJ1aPn_fowiht2AKdI5o',
 };
 
-async function getDriveFiles(folderId: string | undefined, orderBy = 'name'): Promise<DriveFile[]> {
+async function getDriveFiles(folderId: string | undefined, orderBy = 'name', revalidate = 300): Promise<DriveFile[]> {
     const apiKey = process.env.GOOGLE_DRIVE_API_KEY;
     if (!apiKey || !folderId) return [];
     try {
@@ -39,7 +39,7 @@ async function getDriveFiles(folderId: string | undefined, orderBy = 'name'): Pr
         });
         const res = await fetch(
             `https://www.googleapis.com/drive/v3/files?${params}`,
-            { next: { revalidate: 300 } }
+            revalidate === 0 ? { cache: 'no-store' } : { next: { revalidate } }
         );
         if (!res.ok) return [];
         const data = await res.json();
@@ -62,7 +62,7 @@ export default async function HomePage() {
     ) as Record<typeof CORE_KEYS[number], { title: string; desc: string }>;
 
     const [files, m8Files, saunaFiles, evFiles, tasteFiles] = await Promise.all([
-        getDriveFiles(process.env.GOOGLE_DRIVE_ARTWORK_FOLDER_ID, 'createdTime desc'),
+        getDriveFiles(process.env.GOOGLE_DRIVE_ARTWORK_FOLDER_ID, 'createdTime desc', 0),
         getDriveFiles(PROJECT_FOLDER_IDS.m8),
         getDriveFiles(PROJECT_FOLDER_IDS.sauna),
         getDriveFiles(PROJECT_FOLDER_IDS.ev),
