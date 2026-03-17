@@ -65,14 +65,14 @@ html {
     --secondary: #242424;
     --secondary-foreground: #EDEDED;
     --muted: #1C1C1C;
-    --muted-foreground: #888888;
+    --muted-foreground: #BBBBBB;
     --accent: #242424;
     --accent-foreground: #EDEDED;
     --destructive: #7F1D1D;
     --destructive-foreground: #EDEDED;
     --border: #2A2A2A;
     --input: #2A2A2A;
-    --ring: #888888;
+    --ring: #BBBBBB;
 }
 
 @theme inline {
