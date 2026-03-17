@@ -92,7 +92,7 @@ export default async function HomePage() {
             <section
                 id="hero"
                 className="relative flex flex-col justify-center min-h-[100svh] px-6 sm:px-8"
-                style={{ paddingTop: '3.5rem', marginTop: '-50px' }}
+                style={{ paddingTop: '3.5rem', paddingBottom: '15vh' }}
             >
                 <div className="mx-auto w-full max-w-5xl">
                     <div className="space-y-8 max-w-3xl">
