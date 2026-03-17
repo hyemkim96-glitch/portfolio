@@ -186,7 +186,7 @@ export default async function HomePage() {
                     {/* UX/UI Projects */}
                     <div className="mt-12 mb-36">
                         <BlurFade delay={0.05} inView>
-                            <h3 className="text-base font-bold tracking-widest uppercase text-muted-foreground mb-3">
+                            <h3 className="text-base font-bold tracking-widest uppercase text-muted-foreground mb-3" style={{ fontFamily: 'PyeojinGothic' }}>
                                 {wt('projectsTitle')}
                             </h3>
                             <p className="text-sm text-muted-foreground mb-10">{wt('projectsDescription')}</p>
@@ -213,7 +213,7 @@ export default async function HomePage() {
                     <div className="mb-36">
                         <BlurFade delay={0.05} inView>
                             <div className="mb-10">
-                                <h3 className="text-base font-bold tracking-widest uppercase text-muted-foreground mb-3">
+                                <h3 className="text-base font-bold tracking-widest uppercase text-muted-foreground mb-3" style={{ fontFamily: 'PyeojinGothic' }}>
                                     {wt('artworkTitle')}
                                 </h3>
                                 <p className="text-sm text-muted-foreground">{wt('artworkDescription')}</p>
@@ -226,7 +226,7 @@ export default async function HomePage() {
                     <div className="mb-36">
                         <BlurFade delay={0.05} inView>
                             <div className="mb-10">
-                                <h3 className="text-base font-bold tracking-widest uppercase text-muted-foreground mb-3">
+                                <h3 className="text-base font-bold tracking-widest uppercase text-muted-foreground mb-3" style={{ fontFamily: 'PyeojinGothic' }}>
                                     {wt('servicesTitle')}
                                 </h3>
                                 <p className="text-sm text-muted-foreground">{wt('servicesDescription')}</p>
