@@ -1,13 +1,14 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
-import { X, ChevronDown } from 'lucide-react';
+import { useState, useEffect, useRef, useCallback } from 'react';
+import { X } from 'lucide-react';
 import { BlurFade } from '@/components/ui/blur-fade';
 import type { DriveFile } from './artwork-gallery';
 
 export interface ProjectItem {
     key: string;
     index: number;
+    title: string;
     subtitle: string;
     period: string;
     description: string;
@@ -36,6 +37,7 @@ export function ProjectAccordion({
 }) {
     const [openKeys, setOpenKeys] = useState<Set<string>>(new Set());
     const [lightbox, setLightbox] = useState<DriveFile | null>(null);
+    const [cursor, setCursor] = useState<{ x: number; y: number; visible: boolean }>({ x: 0, y: 0, visible: false });
     const containerRef = useRef<HTMLDivElement>(null);
     const savedScrollY = useRef<Map<string, number>>(new Map());
 
@@ -66,8 +68,36 @@ export function ProjectAccordion({
         return () => document.removeEventListener('keydown', onKey);
     }, [lightbox]);
 
+    const handleMouseMove = useCallback((e: React.MouseEvent) => {
+        setCursor(prev => ({ ...prev, x: e.clientX, y: e.clientY }));
+    }, []);
+
+    const handleMouseEnter = useCallback(() => {
+        setCursor(prev => ({ ...prev, visible: true }));
+    }, []);
+
+    const handleMouseLeave = useCallback(() => {
+        setCursor(prev => ({ ...prev, visible: false }));
+    }, []);
+
     return (
         <>
+        {/* Custom cursor */}
+        {cursor.visible && (
+            <div
+                className="fixed z-50 pointer-events-none flex items-center justify-center rounded-full bg-foreground text-background text-[10px] font-medium tracking-widest uppercase"
+                style={{
+                    width: '64px',
+                    height: '64px',
+                    left: cursor.x - 32,
+                    top: cursor.y - 32,
+                    transition: 'opacity 0.15s',
+                }}
+            >
+                click
+            </div>
+        )}
+
         <div ref={containerRef}>
             {items.map((item) => {
                 const isOpen = openKeys.has(item.key);
@@ -78,32 +108,46 @@ export function ProjectAccordion({
                         <div className="border-t border-border">
                             {/* Row header */}
                             <div
-                                className={`py-8 flex flex-col sm:flex-row sm:items-start gap-6 -mx-6 sm:-mx-8 px-6 sm:px-8 transition-colors hover:bg-muted/30 ${hasFiles ? 'cursor-pointer' : 'cursor-default'}`}
+                                className={`py-10 -mx-6 sm:-mx-8 px-6 sm:px-8 transition-colors hover:bg-muted/30 ${hasFiles ? 'cursor-none' : 'cursor-default'}`}
                                 onClick={() => { if (hasFiles) { isOpen ? closeItem(item.key) : openItem(item.key); } }}
+                                onMouseMove={hasFiles ? handleMouseMove : undefined}
+                                onMouseEnter={hasFiles ? handleMouseEnter : undefined}
+                                onMouseLeave={hasFiles ? handleMouseLeave : undefined}
                             >
-                                <span className="text-xs text-muted-foreground font-mono w-8 shrink-0 mt-1">
-                                    {String(item.index + 1).padStart(2, '0')}
-                                </span>
-                                <div className="flex-1 min-w-0">
-                                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
-                                        <p className="text-base font-bold text-foreground whitespace-pre-line">{item.subtitle}</p>
-                                        <div className="flex items-center gap-3 shrink-0">
-                                            <span className="text-xs text-muted-foreground">{item.period}</span>
-                                            {hasFiles && (
-                                                <ChevronDown
-                                                    className={`h-4 w-4 text-muted-foreground transition-transform duration-300 ${isOpen ? 'rotate-180' : 'rotate-0'}`}
-                                                />
-                                            )}
-                                        </div>
+                                <div className="grid grid-cols-1 md:grid-cols-[1fr_1.4fr] gap-6 md:gap-16">
+                                    {/* Left: number + title + subtitle */}
+                                    <div className="flex flex-col justify-center gap-3">
+                                        <span className="text-xs text-muted-foreground font-mono">
+                                            {String(item.index + 1).padStart(2, '0')}
+                                        </span>
+                                        <h3
+                                            className="font-bold text-foreground leading-tight tracking-tight"
+                                            style={{ fontSize: 'clamp(1.6rem, 2.8vw, 2.2rem)' }}
+                                        >
+                                            {item.title}
+                                        </h3>
+                                        <p className="text-sm text-muted-foreground whitespace-pre-line leading-relaxed">
+                                            {item.subtitle}
+                                        </p>
                                     </div>
-                                    <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
-                                    {item.isPrivate && (
-                                        <div className="mt-4">
-                                            <span className="inline-flex items-center border border-border rounded-full px-4 py-1.5 text-xs text-muted-foreground">
+
+                                    {/* Right: date + description + actions */}
+                                    <div className="flex flex-col justify-center gap-3">
+                                        <span className="text-xs text-muted-foreground">
+                                            {item.period}
+                                        </span>
+                                        <p
+                                            className="text-sm md:text-base text-muted-foreground leading-relaxed"
+                                            style={{ wordBreak: 'keep-all', overflowWrap: 'break-word' }}
+                                        >
+                                            {item.description}
+                                        </p>
+                                        {item.isPrivate && (
+                                            <span className="inline-flex w-fit items-center border border-border rounded-full px-4 py-1.5 text-xs text-muted-foreground">
                                                 {privateNote}
                                             </span>
-                                        </div>
-                                    )}
+                                        )}
+                                    </div>
                                 </div>
                             </div>
 

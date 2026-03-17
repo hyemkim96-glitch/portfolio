@@ -73,6 +73,7 @@ export default async function HomePage() {
     const projectItems: ProjectItem[] = PROJECT_KEYS.map((key, index) => ({
         key,
         index,
+        title: pt(`projects.${key}.title`),
         subtitle: pt(`projects.${key}.subtitle`),
         period: pt(`projects.${key}.period`),
         description: pt(`projects.${key}.description`),
