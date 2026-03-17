@@ -113,7 +113,7 @@
             },
             "sds": {
                 "title": "H9 / Samsung SDS",
-                "subtitle": "물류 플랫폼(LaaS) 풀필먼트 서비스 UX/UI 설계",
+                "subtitle": "물류 플랫폼(LaaS) 풀필먼트 서비스\nUX/UI 설계",
                 "period": "2023.01 ~ 2024.05",
                 "description": "운영자와 화주의 상반된 요구사항을 단일 데이터 구조 위에서 해결한 물류 플랫폼 설계 프로젝트입니다. (보안 사항으로 상세 내용은 비공개입니다.)",
                 "isPrivate": true
