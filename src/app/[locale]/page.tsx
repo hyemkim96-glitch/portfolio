@@ -96,6 +96,17 @@ export default async function HomePage() {
                 className="relative flex flex-col justify-center min-h-[100svh] px-6 sm:px-8 overflow-hidden"
                 style={{ paddingTop: '3.5rem', paddingBottom: '15vh' }}
             >
+                {/* Spline background animation */}
+                <div className="absolute inset-0 pointer-events-none select-none">
+                    <iframe
+                        src="https://my.spline.design/3dglassherobg-3CZg9pwHFM6NCsjtDP1RAvSh/"
+                        frameBorder="0"
+                        width="100%"
+                        height="100%"
+                        style={{ border: 'none' }}
+                        title="Background animation"
+                    />
+                </div>
 
                 <div className="mx-auto w-full max-w-5xl relative z-10">
                     <div className="space-y-8 max-w-3xl">
