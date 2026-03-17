@@ -82,8 +82,9 @@
                 "subtitle": "New Massage Chair UX/UI\nFocusing on distraction-free relaxation",
                 "tags": ["Healthcare", "Massage Chair"],
                 "period": "2024.06 ~ 2024.12",
-                "description": "Focused on the essence of rest by removing all elements that cause 'control fatigue'. Identified physical and cognitive barriers through data from 300 users and established intuitive PUI.",
+                "description": "Removed all 'control fatigue' triggers to focus on the essence of rest. Designed intuitive PUI based on physical and cognitive barriers found in 300-user data.",
                 "roles": "UX Planning (100%), UI Design (100%), QA (70%)",
+                "contribution": "UX Planning 100% · UI Design 100% · QA 70%",
                 "deckUrl": "https://www.figma.com/deck/RbBPjFLC5ZLnOcVaGyt3uZ"
             },
             "sauna": {
@@ -93,6 +94,7 @@
                 "period": "2025.04 ~ 2025.12",
                 "description": "Shifted from functional roles to emotional immersion strategies using confined space. Enhanced usability with context-aware touchpoints and AI-generated media.",
                 "roles": "Product Planning (70%), UX Planning (100%), Content Creation, UI Design (100%), Motion Graphics (50%), QA (100%)",
+                "contribution": "Product Planning 70% · UX Planning 100% · UI Design 100% · QA 100%",
                 "deckUrl": "https://www.figma.com/deck/aKiYmQ1j0i08OiRxcuecmC"
             },
             "ev": {
@@ -103,6 +105,7 @@
                 "description": "Structured EV charging pain points through observation and surveys. Designed integrated solutions for info overload and standby transitions based on IVI systems.",
                 "team": "Team of 4",
                 "stats": "Research 70% | Planning 70% | Design 80%",
+                "contribution": "Research 70% · Planning 70% · Design 80%",
                 "deckUrl": "https://www.figma.com/deck/SE1HxW61qVRzJ2aOoOHkgh"
             },
             "taste": {
@@ -113,6 +116,7 @@
                 "description": "Structured community participation journeys into before/during/after phases. Designed scenarios covering AI retrospectives and personalized recommendations.",
                 "team": "Team of 4",
                 "stats": "Research 70% | Planning 70% | Design 80%",
+                "contribution": "Research 70% · Planning 70% · Design 80%",
                 "deckUrl": "https://www.figma.com/deck/73DNWsatTwnZhvrWB8xEnd"
             },
             "sds": {
@@ -156,6 +160,11 @@
         "placeholderEmail": "Email",
         "placeholderMessage": "Type your message here...",
         "executeSend": "Send",
+        "sending": "Sending…",
+        "successTitle": "Message sent!",
+        "successMessage": "Thank you for reaching out. I'll get back to you soon.",
+        "sendAnother": "Send another message",
+        "errorMessage": "Something went wrong. Please try again or email me directly.",
         "alternative": "Other channels"
     }
 }

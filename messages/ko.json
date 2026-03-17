@@ -82,8 +82,9 @@
                 "subtitle": "방해 없는 휴식 경험을 제공하는\n신규 안마의자 UXUI 기획/디자인",
                 "tags": ["헬스케어", "마사지 체어"],
                 "period": "2024.06 ~ 2024.12",
-                "description": "휴식이라는 본질에 집중하기 위해, 사용자에게 '조작 피로'를 주는 요소를 모두 걷어냈습니다. 300명의 데이터와 행동 관찰을 통해 물리적·인지적 장벽을 찾아내고, 이를 해결하기 위해 직관적인 PUI와 학습이 필요 없는 탐색 구조를 새롭게 정립했습니다.",
+                "description": "휴식의 본질에 집중하기 위해 '조작 피로'를 유발하는 모든 요소를 제거했습니다. 300명의 데이터로 찾아낸 물리적·인지적 장벽을 해결하는 직관적인 PUI를 정립했습니다.",
                 "roles": "UX 기획 : 상품컨셉 및 기획에 맞춰 요구사항 정의 및 UX 전략 도출 / I.A, 개발용 스토리보드 작성 (기여도 100%)\nUI 디자인 : UX 전략 및 제품 디자인의 Look & Feel에 맞춘 디자인 시스템 제작 및 개발사 이관 (기여도 100%)\nQA : 설계된 UXUI 대로 제품이 잘 작동하는 지 검수 (기여도 70%)",
+                "contribution": "UX 기획 100% · UI 디자인 100% · QA 70%",
                 "deckUrl": "https://www.figma.com/deck/RbBPjFLC5ZLnOcVaGyt3uZ"
             },
             "sauna": {
@@ -93,6 +94,7 @@
                 "period": "2025.04 ~ 2025.12",
                 "description": "단순한 기능적 역할만을 수행하는 사우나 부스에서 벗어나, 공간의 밀폐성을 활용하여 개인의 정서적 몰입을 돕는 UX 전략을 수립하였습니다.",
                 "roles": "상품 기획 (70%), UX 기획 (100%), 컨텐츠 제작, UI 디자인 (100%), 모션 그래픽 (50%), QA (100%)",
+                "contribution": "상품 기획 70% · UX 기획 100% · UI 디자인 100% · QA 100%",
                 "deckUrl": "https://www.figma.com/deck/aKiYmQ1j0i08OiRxcuecmC"
             },
             "ev": {
@@ -103,6 +105,7 @@
                 "description": "관찰 조사와 설문에서 EV 충전 경험의 불편 지점을 구조화하고, 커넥티드 카 인포테인먼트 시스템 기반의 통합 충전 솔루션을 설계했습니다.",
                 "team": "4인 팀",
                 "stats": "리서치 70% | 기획 70% | 디자인 80%",
+                "contribution": "리서치 70% · 기획 70% · 디자인 80%",
                 "deckUrl": "https://www.figma.com/deck/SE1HxW61qVRzJ2aOoOHkgh"
             },
             "taste": {
@@ -113,6 +116,7 @@
                 "description": "취향 기반 모임의 참여 여정을 구조화하고, AI 회고와 개인 맞춤 추천까지 전 주기를 커버하는 서비스 시나리오를 설계했습니다.",
                 "team": "4인 팀",
                 "stats": "리서치 70% | 기획 70% | 디자인 80%",
+                "contribution": "리서치 70% · 기획 70% · 디자인 80%",
                 "deckUrl": "https://www.figma.com/deck/73DNWsatTwnZhvrWB8xEnd"
             },
             "sds": {
@@ -156,6 +160,11 @@
         "placeholderEmail": "이메일",
         "placeholderMessage": "메시지 내용을 입력하세요...",
         "executeSend": "보내기",
+        "sending": "전송 중…",
+        "successTitle": "메시지가 전송되었습니다!",
+        "successMessage": "연락해 주셔서 감사합니다. 곧 답변 드리겠습니다.",
+        "sendAnother": "다시 보내기",
+        "errorMessage": "전송에 실패했습니다. 다시 시도하거나 이메일로 직접 연락해 주세요.",
         "alternative": "다른 채널로 연락하기"
     }
 }

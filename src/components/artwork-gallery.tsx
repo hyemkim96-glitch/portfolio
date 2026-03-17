@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+import Image from 'next/image';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 export interface DriveFile {
@@ -86,12 +87,12 @@ export function ArtworkGallery({ files }: Props) {
                                 </div>
                             </div>
                         ) : (
-                            /* eslint-disable-next-line @next/next/no-img-element */
-                            <img
+                            <Image
                                 src={thumbnailUrl(file.id)}
                                 alt={file.name}
-                                className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-300"
-                                loading="lazy"
+                                fill
+                                sizes="(max-width: 768px) 33vw, 300px"
+                                className="object-cover group-hover:scale-[1.03] transition-transform duration-300"
                             />
                         )}
                     </button>
@@ -137,11 +138,13 @@ export function ArtworkGallery({ files }: Props) {
                                 allowFullScreen
                             />
                         ) : (
-                            /* eslint-disable-next-line @next/next/no-img-element */
-                            <img
+                            <Image
                                 src={fullUrl(current.id)}
                                 alt={current.name}
+                                width={2000}
+                                height={1500}
                                 className="max-w-full max-h-[85vh] object-contain rounded-md"
+                                style={{ width: 'auto', height: 'auto', maxHeight: '85vh' }}
                             />
                         )}
                     </div>

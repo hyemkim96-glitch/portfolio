@@ -1,4 +1,5 @@
 import { getTranslations } from 'next-intl/server';
+import Image from 'next/image';
 import { GNB } from '@/components/gnb';
 import { Button } from '@/components/ui/button';
 import { Marquee } from '@/components/ui/marquee';
@@ -78,6 +79,7 @@ export default async function HomePage() {
         tags: (pt.raw(`projects.${key}.tags`) as string[]) ?? [],
         period: pt(`projects.${key}.period`),
         description: pt(`projects.${key}.description`),
+        contribution: (pt.raw(`projects.${key}.contribution`) as string | undefined) ?? undefined,
         isPrivate: key === 'sds',
         files: projectFiles[key] ?? [],
     }));
@@ -92,7 +94,7 @@ export default async function HomePage() {
             <section
                 id="hero"
                 className="relative flex flex-col justify-center min-h-[100svh] px-6 sm:px-8"
-                style={{ paddingTop: '3.5rem' }}
+                style={{ paddingTop: '3.5rem', paddingBottom: '15vh' }}
             >
                 <div className="mx-auto w-full max-w-5xl">
                     <div className="space-y-8 max-w-3xl">
@@ -245,13 +247,13 @@ export default async function HomePage() {
                                         className="group flex items-stretch gap-6 border-t border-border py-8 hover:bg-muted/30 -mx-6 sm:-mx-8 px-6 sm:px-8 transition-colors"
                                     >
                                         {/* Thumbnail */}
-                                        <div className="w-36 sm:w-48 rounded-md overflow-hidden bg-muted shrink-0">
-                                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                                            <img
+                                        <div className="relative w-36 sm:w-48 rounded-md overflow-hidden bg-muted shrink-0 aspect-video">
+                                            <Image
                                                 src={`https://api.microlink.io/?url=${encodeURIComponent(AI_SERVICE_URLS[key])}&screenshot=true&meta=false&embed=screenshot.url`}
                                                 alt={at(`sites.${key}.name`)}
-                                                className="w-full h-full object-cover object-top"
-                                                loading="lazy"
+                                                fill
+                                                sizes="(max-width: 640px) 144px, 192px"
+                                                className="object-cover object-top"
                                             />
                                         </div>
                                         {/* Content */}
@@ -293,7 +295,7 @@ export default async function HomePage() {
                     <BlurFade delay={0.3} inView>
                         <div className="flex flex-wrap gap-4 mb-24">
                             <a
-                                href="mailto:hyemkim0296@gmail.com"
+                                href="mailto:hyem.kim96@gmail.com"
                                 className="inline-flex items-center gap-2 border border-background/30 px-6 py-3 rounded-full text-sm font-medium hover:bg-background hover:text-foreground transition-colors"
                             >
                                 {ct('sendEmail')} →
@@ -321,14 +323,6 @@ export default async function HomePage() {
                                 className="hover:opacity-100 transition-opacity"
                             >
                                 LinkedIn
-                            </a>
-                            <a
-                                href="https://github.com/hyemkim96-glitch"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="hover:opacity-100 transition-opacity"
-                            >
-                                GitHub
                             </a>
                         </div>
                     </div>

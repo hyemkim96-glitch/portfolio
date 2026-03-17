@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 import { X } from 'lucide-react';
 import { BlurFade } from '@/components/ui/blur-fade';
 import type { DriveFile } from './artwork-gallery';
@@ -13,6 +14,7 @@ export interface ProjectItem {
     tags: string[];
     period: string;
     description: string;
+    contribution?: string;
     isPrivate: boolean;
     files: DriveFile[];
 }
@@ -85,7 +87,7 @@ export function ProjectAccordion({
                             >
                                 <div className="grid grid-cols-1 md:grid-cols-[1fr_1.4fr] gap-6 md:gap-16">
                                     {/* Left: number + subtitle (big title) + title (badge) */}
-                                    <div className="flex flex-col justify-center gap-3">
+                                    <div className="flex flex-col justify-start gap-3">
                                         <span className="text-xs text-muted-foreground font-mono">
                                             {String(item.index + 1).padStart(2, '0')}
                                         </span>
@@ -95,17 +97,22 @@ export function ProjectAccordion({
                                         >
                                             {item.subtitle}
                                         </h3>
-                                        <div className="flex flex-wrap gap-1.5">
+                                        <div className="flex flex-wrap items-center gap-1.5">
                                             {item.tags.map((tag) => (
                                                 <span key={tag} className="inline-flex w-fit text-[10px] font-medium tracking-widest uppercase text-muted-foreground border border-border rounded-full px-2.5 py-1">
                                                     {tag}
                                                 </span>
                                             ))}
+                                            {item.contribution && (
+                                                <span className="text-[10px] text-muted-foreground/70 font-mono ml-0.5">
+                                                    {item.contribution}
+                                                </span>
+                                            )}
                                         </div>
                                     </div>
 
                                     {/* Right: date + description + actions */}
-                                    <div className="flex flex-col justify-center gap-3">
+                                    <div className="flex flex-col justify-start gap-3">
                                         <span className="text-xs text-muted-foreground">
                                             {item.period}
                                         </span>
@@ -132,13 +139,14 @@ export function ProjectAccordion({
                                 >
                                     <div className="flex flex-col gap-2 pt-4">
                                         {sortByName(item.files).map(file => (
-                                            /* eslint-disable-next-line @next/next/no-img-element */
-                                            <img
+                                            <Image
                                                 key={file.id}
                                                 src={thumbUrl(file.id)}
                                                 alt={file.name}
+                                                width={1600}
+                                                height={900}
                                                 className="w-full h-auto cursor-zoom-in"
-                                                loading="lazy"
+                                                style={{ height: 'auto' }}
                                                 onClick={e => { e.stopPropagation(); setLightbox(file); }}
                                             />
                                         ))}
@@ -173,12 +181,13 @@ export function ProjectAccordion({
                 >
                     <X className="h-5 w-5" />
                 </button>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                <Image
                     src={fullUrl(lightbox.id)}
                     alt={lightbox.name}
+                    width={1920}
+                    height={1080}
                     className="max-w-full max-h-screen object-contain"
-                    style={{ width: '1920px', height: '1080px', objectFit: 'contain' }}
+                    style={{ width: 'auto', height: 'auto', maxHeight: '100vh', maxWidth: '100vw' }}
                     onClick={e => e.stopPropagation()}
                 />
             </div>
