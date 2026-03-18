@@ -88,9 +88,16 @@ export function ProjectAccordion({
                                 <div className="grid grid-cols-1 md:grid-cols-[1fr_1.4fr] gap-6 md:gap-16">
                                     {/* Left: number + subtitle (big title) + title (badge) */}
                                     <div className="flex flex-col justify-start gap-3">
-                                        <span className="text-xs text-muted-foreground font-mono">
-                                            {String(item.index + 1).padStart(2, '0')}
-                                        </span>
+                                        <div className="flex items-baseline gap-2">
+                                            <span className="text-xs text-muted-foreground font-mono shrink-0">
+                                                {String(item.index + 1).padStart(2, '0')}
+                                            </span>
+                                            {item.contribution && (
+                                                <span className="text-[11px] text-muted-foreground/60 font-mono leading-none">
+                                                    {item.contribution}
+                                                </span>
+                                            )}
+                                        </div>
                                         <h3
                                             className="font-bold text-foreground leading-tight tracking-tight whitespace-pre-line"
                                             style={{ fontSize: 'clamp(1.1rem, 1.8vw, 1.4rem)' }}
@@ -103,11 +110,6 @@ export function ProjectAccordion({
                                                     {tag}
                                                 </span>
                                             ))}
-                                            {item.contribution && (
-                                                <span className="text-[12px] text-muted-foreground/70 font-mono ml-0.5 truncate min-w-0">
-                                                    {item.contribution}
-                                                </span>
-                                            )}
                                         </div>
                                     </div>
 
