@@ -1,4 +1,3 @@
-import Spline from '@splinetool/react-spline/next';
 import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
 import { GNB } from '@/components/gnb';
@@ -97,11 +96,6 @@ export default async function HomePage() {
                 className="relative flex flex-col justify-center min-h-[100svh] px-6 sm:px-8 overflow-hidden"
                 style={{ paddingTop: '3.5rem', paddingBottom: '15vh' }}
             >
-                {/* Spline background animation */}
-                <div className="absolute inset-0 pointer-events-none select-none">
-                    <Spline scene="https://prod.spline.design/GqOYlG6mhkqg-TaH/scene.splinecode" />
-                </div>
-
                 <div className="mx-auto w-full max-w-5xl relative z-10">
                     <div className="space-y-8 max-w-3xl">
                         <BlurFade delay={0.05} duration={0.5}>
