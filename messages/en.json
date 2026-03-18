@@ -8,7 +8,8 @@
         "aiService": "AI Service",
         "contact": "Contact",
         "resume": "Resume",
-        "sayHello": "Say hello"
+        "sayHello": "Say hello",
+        "articleTooltip": "Coming soon"
     },
     "Hero": {
         "headline": "Hyemin Kim,\nAgile UX Designer.",

@@ -4,7 +4,7 @@ import { useTheme } from 'next-themes'
 import { usePathname, useRouter } from 'next/navigation'
 import { useTranslations, useLocale } from 'next-intl'
 import { cn } from '@/lib/utils'
-import { Sun, Moon, Menu, X } from 'lucide-react'
+import { Sun, Moon, Menu, X, SquareArrowOutUpRight } from 'lucide-react'
 import { useState, useEffect } from 'react'
 
 export function GNB() {
@@ -54,9 +54,9 @@ export function GNB() {
     }
 
     const navItems = [
-        { label: t('home'), href: isHome ? '#hero' : `/${locale}`, sectionId: 'hero' },
-        { label: t('work'), href: isHome ? '#work' : `/${locale}#work`, sectionId: 'work' },
-        { label: t('article'), href: `/${locale}/article`, sectionId: null },
+        { label: t('home'), href: isHome ? '#hero' : `/${locale}`, sectionId: 'hero', isArticle: false },
+        { label: t('work'), href: isHome ? '#work' : `/${locale}#work`, sectionId: 'work', isArticle: false },
+        { label: t('article'), href: null, sectionId: null, isArticle: true },
     ]
 
     const navBg = isHome && !scrolled
@@ -72,13 +72,28 @@ export function GNB() {
                     </a>
                     <div className="hidden md:flex items-center gap-1">
                         {navItems.map((item) => {
+                            if (item.isArticle) {
+                                return (
+                                    <div key="article" className="relative group/article">
+                                        <span
+                                            className="px-3 py-1.5 text-sm rounded-md transition-colors text-muted-foreground cursor-default inline-flex items-center gap-1"
+                                        >
+                                            {item.label}
+                                            <SquareArrowOutUpRight className="h-3 w-3" />
+                                        </span>
+                                        <span className="absolute left-1/2 -translate-x-1/2 top-full mt-1.5 px-2.5 py-1 text-xs bg-popover text-popover-foreground border border-border rounded-md whitespace-nowrap opacity-0 group-hover/article:opacity-100 pointer-events-none transition-opacity z-50 shadow-sm">
+                                            {t('articleTooltip')}
+                                        </span>
+                                    </div>
+                                )
+                            }
                             const isActive = item.sectionId
                                 ? isHome ? activeSection === item.sectionId : false
-                                : pathname === item.href
+                                : false
                             return (
                                 <a
                                     key={item.href}
-                                    href={item.href}
+                                    href={item.href!}
                                     className={cn(
                                         'px-3 py-1.5 text-sm rounded-md transition-colors',
                                         isActive
@@ -119,13 +134,25 @@ export function GNB() {
                 <div className="fixed inset-0 top-14 z-40 bg-background md:hidden">
                     <div className="flex flex-col p-6 gap-4">
                         {navItems.map((item) => {
+                            if (item.isArticle) {
+                                return (
+                                    <span
+                                        key="article-mobile"
+                                        className="py-3 text-lg font-medium border-b border-border/50 text-muted-foreground inline-flex items-center gap-2"
+                                    >
+                                        {item.label}
+                                        <SquareArrowOutUpRight className="h-4 w-4" />
+                                        <span className="text-xs font-normal">({t('articleTooltip')})</span>
+                                    </span>
+                                )
+                            }
                             const isActive = item.sectionId
                                 ? isHome && activeSection === item.sectionId
-                                : pathname === item.href
+                                : false
                             return (
                                 <a
                                     key={item.href}
-                                    href={item.href}
+                                    href={item.href!}
                                     onClick={() => setIsMenuOpen(false)}
                                     className={cn(
                                         'py-3 text-lg font-medium transition-colors border-b border-border/50',
