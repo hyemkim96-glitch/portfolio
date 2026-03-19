@@ -1,7 +1,7 @@
-import Anthropic from '@anthropic-ai/sdk';
+import Groq from 'groq-sdk';
 import { NextRequest, NextResponse } from 'next/server';
 
-const client = new Anthropic();
+const client = new Groq();
 
 const SYSTEM_PROMPT = `You are a portfolio chatbot for Hyemin Kim (김혜민), a UX/UI Designer. Answer visitor questions about Hyemin based on the information below. Reply in the same language as the question (Korean for Korean, English for English). Be friendly, concise, and professional.
 
@@ -63,14 +63,13 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ error: 'messages is required' }, { status: 400 });
         }
 
-        const response = await client.messages.create({
-            model: 'claude-haiku-4-5-20251001',
+        const response = await client.chat.completions.create({
+            model: 'llama-3.3-70b-versatile',
             max_tokens: 1024,
-            system: SYSTEM_PROMPT,
-            messages,
+            messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...messages],
         });
 
-        const text = response.content[0].type === 'text' ? response.content[0].text : '';
+        const text = response.choices[0]?.message?.content ?? '';
         return NextResponse.json({ message: text });
     } catch (error) {
         const message = error instanceof Error ? error.message : 'Unknown error';
