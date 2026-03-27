@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence, useMotionValue, useSpring } from 'motion/react';
 import { BlurFade } from '@/components/ui/blur-fade';
 
 interface Comp { title: string; desc: string; }
@@ -33,11 +33,24 @@ const IMAGES: Record<CompKey, string | null> = {
     collab: null,
 };
 
+const SPRING = { stiffness: 200, damping: 28, mass: 0.6 };
+const OFFSET = { x: 24, y: -120 }; // 커서 기준 이미지 위치 오프셋
+
 export function CoreCompetencies({ translations }: Props) {
     const [hoveredKey, setHoveredKey] = useState<CompKey | null>(null);
 
+    const rawX = useMotionValue(0);
+    const rawY = useMotionValue(0);
+    const x = useSpring(rawX, SPRING);
+    const y = useSpring(rawY, SPRING);
+
+    const handleMouseMove = (e: React.MouseEvent) => {
+        rawX.set(e.clientX + OFFSET.x);
+        rawY.set(e.clientY + OFFSET.y);
+    };
+
     return (
-        <section className="py-16">
+        <section className="py-16" onMouseMove={handleMouseMove}>
             <BlurFade delay={0.05} inView>
                 <p className="text-base text-muted-foreground font-medium tracking-widest uppercase mb-12">
                     핵심 역량
@@ -81,43 +94,44 @@ export function CoreCompetencies({ translations }: Props) {
                     </BlurFade>
                 ))}
                 <div className="border-t border-border" />
-
-                {/* Hover image preview — fixed to right side of viewport */}
-                <AnimatePresence>
-                    {hoveredKey && (
-                        <motion.div
-                            key={hoveredKey}
-                            initial={{ opacity: 0, x: 16, scale: 0.96 }}
-                            animate={{ opacity: 1, x: 0, scale: 1 }}
-                            exit={{ opacity: 0, x: 16, scale: 0.96 }}
-                            transition={{ duration: 0.25, ease: [0.33, 1, 0.68, 1] }}
-                            className="hidden lg:block fixed right-10 top-1/2 -translate-y-1/2 z-50 pointer-events-none"
-                        >
-                            <div className="w-72 xl:w-80 aspect-[4/3] rounded-2xl overflow-hidden border border-border bg-muted shadow-2xl">
-                                {IMAGES[hoveredKey] ? (
-                                    <img
-                                        src={IMAGES[hoveredKey]!}
-                                        alt={translations[hoveredKey].title}
-                                        className="w-full h-full object-cover"
-                                    />
-                                ) : (
-                                    /* 이미지 준비 전 플레이스홀더 */
-                                    <div className="w-full h-full flex flex-col items-center justify-center gap-2 text-muted-foreground/40">
-                                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                                            <rect x="3" y="3" width="18" height="18" rx="2" />
-                                            <circle cx="8.5" cy="8.5" r="1.5" />
-                                            <path d="m21 15-5-5L5 21" />
-                                        </svg>
-                                        <span className="text-xs font-mono tracking-widest uppercase">
-                                            {TAGS[hoveredKey]}
-                                        </span>
-                                    </div>
-                                )}
-                            </div>
-                        </motion.div>
-                    )}
-                </AnimatePresence>
             </div>
+
+            {/* 마우스 따라다니는 이미지 프리뷰 */}
+            <AnimatePresence>
+                {hoveredKey && (
+                    <motion.div
+                        key={hoveredKey}
+                        initial={{ opacity: 0, scale: 0.88 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.88 }}
+                        transition={{ duration: 0.2, ease: [0.33, 1, 0.68, 1] }}
+                        style={{ x, y, translateX: '-50%' }}
+                        className="hidden lg:block fixed top-0 left-0 z-50 pointer-events-none"
+                    >
+                        <div className="w-64 xl:w-72 aspect-[4/3] rounded-2xl overflow-hidden border border-border bg-muted shadow-2xl">
+                            {IMAGES[hoveredKey] ? (
+                                <img
+                                    src={IMAGES[hoveredKey]!}
+                                    alt={translations[hoveredKey].title}
+                                    className="w-full h-full object-cover"
+                                />
+                            ) : (
+                                /* 이미지 준비 전 플레이스홀더 */
+                                <div className="w-full h-full flex flex-col items-center justify-center gap-2 text-muted-foreground/40">
+                                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                        <rect x="3" y="3" width="18" height="18" rx="2" />
+                                        <circle cx="8.5" cy="8.5" r="1.5" />
+                                        <path d="m21 15-5-5L5 21" />
+                                    </svg>
+                                    <span className="text-xs font-mono tracking-widest uppercase">
+                                        {TAGS[hoveredKey]}
+                                    </span>
+                                </div>
+                            )}
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </section>
     );
 }
