@@ -165,8 +165,9 @@ export function GNB() {
                         })}
                         <div className="pt-4">
                             <a
-                                href="/resume.pdf"
-                                download="이력서.pdf"
+                                href="https://drive.google.com/file/d/16O17-qQrQMBiZR0kUW3HZYnumJG5VrWP/view?usp=sharing"
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 className="block w-full text-center py-3 bg-primary text-primary-foreground rounded-md font-medium"
                             >
                                 {t('resume')}

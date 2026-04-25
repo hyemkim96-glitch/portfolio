@@ -129,12 +129,12 @@ export default async function HomePage() {
                         <BlurFade delay={0.35} duration={0.6}>
                             <div className="flex flex-wrap gap-3 pt-2">
                                 <Button asChild size="lg">
-                                    <a href="/Hyemin_Portfolio.pdf" download="Hyemin_Portfolio.pdf">
+                                    <a href="https://drive.google.com/file/d/1EB2JnfZbRbp-rjP1VCC563pn5Mhcxyye/view?usp=sharing" target="_blank" rel="noopener noreferrer">
                                         {t('viewWork')}
                                     </a>
                                 </Button>
                                 <Button asChild variant="outline" size="lg">
-                                    <a href="/resume.pdf" download="이력서.pdf">
+                                    <a href="https://drive.google.com/file/d/16O17-qQrQMBiZR0kUW3HZYnumJG5VrWP/view?usp=sharing" target="_blank" rel="noopener noreferrer">
                                         {t('downloadResume')}
                                     </a>
                                 </Button>
@@ -204,8 +204,9 @@ export default async function HomePage() {
                         {/* PDF CTA */}
                         <div className="mt-10 flex justify-start">
                             <a
-                                href="/Hyemin_Portfolio.pdf"
-                                download="Hyemin_Portfolio.pdf"
+                                href="https://drive.google.com/file/d/1EB2JnfZbRbp-rjP1VCC563pn5Mhcxyye/view?usp=sharing"
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 className="inline-flex items-center gap-2 bg-foreground text-background px-6 py-3 rounded-full text-sm font-medium hover:opacity-80 transition-opacity"
                             >
                                 {wt('viewFullPdf')} ↓
@@ -301,8 +302,9 @@ export default async function HomePage() {
                                 {ct('sendEmail')} →
                             </a>
                             <a
-                                href="/resume.pdf"
-                                download="이력서.pdf"
+                                href="https://drive.google.com/file/d/16O17-qQrQMBiZR0kUW3HZYnumJG5VrWP/view?usp=sharing"
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 className="inline-flex items-center gap-2 border border-background/30 px-6 py-3 rounded-full text-sm font-medium hover:bg-background hover:text-foreground transition-colors"
                             >
                                 {ct('viewResume')} →
