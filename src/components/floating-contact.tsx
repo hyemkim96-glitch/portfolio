@@ -29,7 +29,7 @@ export function FloatingContact() {
                             onClick={() => setModalOpen(true)}
                             className="inline-flex items-center gap-2 bg-foreground text-background px-5 py-2.5 rounded-full text-sm font-medium shadow-lg hover:opacity-80 transition-opacity"
                         >
-                            Say hello →
+                            궁금하신 게 있으신가요? →
                         </button>
                     </motion.div>
                 )}
