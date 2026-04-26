@@ -1,7 +1,10 @@
-import Groq from 'groq-sdk';
+import OpenAI from 'openai';
 import { NextRequest, NextResponse } from 'next/server';
 
-const client = new Groq();
+const client = new OpenAI({
+    apiKey: process.env.DEEPSEEK_API_KEY,
+    baseURL: 'https://api.deepseek.com',
+});
 
 const SYSTEM_PROMPT = `You are a portfolio chatbot for Hyemin Kim (김혜민), a UX/UI Designer. Answer visitor questions about Hyemin based on the information below. Reply in the same language as the question (Korean for Korean, English for English). Be friendly, concise, and professional.
 
@@ -64,7 +67,7 @@ export async function POST(req: NextRequest) {
         }
 
         const response = await client.chat.completions.create({
-            model: 'llama-3.3-70b-versatile',
+            model: 'deepseek-chat',
             max_tokens: 1024,
             messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...messages],
         });
