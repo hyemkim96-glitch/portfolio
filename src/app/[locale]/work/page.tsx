@@ -115,21 +115,8 @@ export default async function WorkPage() {
                 </div>
             </section>
 
-            {/* ── AI Artwork ── */}
-            <section className="mb-24">
-                <BlurFade delay={0.05} inView>
-                    <div className="mb-10">
-                        <h2 className="text-base font-medium tracking-widest uppercase text-muted-foreground mb-3">
-                            {t('artworkTitle')}
-                        </h2>
-                        <p className="text-sm text-muted-foreground">{t('artworkDescription')}</p>
-                    </div>
-                </BlurFade>
-                <ArtworkGallery files={files} />
-            </section>
-
             {/* ── AI Services ── */}
-            <section className="mb-16">
+            <section className="mb-24">
                 <BlurFade delay={0.05} inView>
                     <div className="mb-10">
                         <h2 className="text-base font-medium tracking-widest uppercase text-muted-foreground mb-3">
@@ -163,6 +150,19 @@ export default async function WorkPage() {
                         </BlurFade>
                     ))}
                 </div>
+            </section>
+
+            {/* ── AI Artwork ── */}
+            <section className="mb-16">
+                <BlurFade delay={0.05} inView>
+                    <div className="mb-10">
+                        <h2 className="text-base font-medium tracking-widest uppercase text-muted-foreground mb-3">
+                            {t('artworkTitle')}
+                        </h2>
+                        <p className="text-sm text-muted-foreground">{t('artworkDescription')}</p>
+                    </div>
+                </BlurFade>
+                <ArtworkGallery files={files} />
             </section>
         </LayoutWrapper>
     );

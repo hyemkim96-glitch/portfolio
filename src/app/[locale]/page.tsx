@@ -213,19 +213,6 @@ export default async function HomePage() {
                         </div>
                     </div>
 
-                    {/* AI Artwork */}
-                    <div className="mb-36">
-                        <BlurFade delay={0.05} inView>
-                            <div className="mb-10">
-                                <h3 className="text-base font-bold tracking-widest uppercase text-muted-foreground mb-3">
-                                    {wt('artworkTitle')}
-                                </h3>
-                                <p className="text-sm text-muted-foreground">{wt('artworkDescription')}</p>
-                            </div>
-                        </BlurFade>
-                        <ArtworkGallery files={files} />
-                    </div>
-
                     {/* AI Services */}
                     <div className="mb-36">
                         <BlurFade delay={0.05} inView>
@@ -269,6 +256,19 @@ export default async function HomePage() {
                             ))}
                             <div className="border-t border-border" />
                         </div>
+                    </div>
+
+                    {/* AI Artwork */}
+                    <div className="mb-36">
+                        <BlurFade delay={0.05} inView>
+                            <div className="mb-10">
+                                <h3 className="text-base font-bold tracking-widest uppercase text-muted-foreground mb-3">
+                                    {wt('artworkTitle')}
+                                </h3>
+                                <p className="text-sm text-muted-foreground">{wt('artworkDescription')}</p>
+                            </div>
+                        </BlurFade>
+                        <ArtworkGallery files={files} />
                     </div>
                 </div>
             </section>
