@@ -1,11 +1,6 @@
 import OpenAI from 'openai';
 import { NextRequest, NextResponse } from 'next/server';
 
-const client = new OpenAI({
-    apiKey: process.env.DEEPSEEK_API_KEY,
-    baseURL: 'https://api.deepseek.com',
-});
-
 const SYSTEM_PROMPT = `You are a portfolio chatbot for Hyemin Kim (김혜민), a UX/UI Designer. Answer visitor questions about Hyemin based on the information below. Reply in the same language as the question (Korean for Korean, English for English). Be friendly, concise, and professional.
 
 ## Profile
@@ -59,6 +54,11 @@ Figma, UX Research, IA Design, Design Systems, Motion Design, AI Design, Prototy
 - You represent Hyemin's portfolio — be warm and professional`;
 
 export async function POST(req: NextRequest) {
+    const client = new OpenAI({
+        apiKey: process.env.DEEPSEEK_API_KEY,
+        baseURL: 'https://api.deepseek.com',
+    });
+
     try {
         const { messages } = await req.json();
 
