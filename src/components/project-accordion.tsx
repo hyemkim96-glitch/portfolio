@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { X } from 'lucide-react';
+import { X, ChevronDown } from 'lucide-react';
 import { BlurFade } from '@/components/ui/blur-fade';
 import type { DriveFile } from './artwork-gallery';
 
@@ -82,7 +82,7 @@ export function ProjectAccordion({
                         <div className="border-t border-border">
                             {/* Row header */}
                             <div
-                                className={`py-10 -mx-6 sm:-mx-8 px-6 sm:px-8 transition-colors hover:bg-muted/30 ${hasFiles ? 'cursor-pointer' : 'cursor-default'}`}
+                                className={`relative py-10 -mx-6 sm:-mx-8 px-6 sm:px-8 transition-colors hover:bg-muted/30 ${hasFiles ? 'cursor-pointer' : 'cursor-default'} ${isOpen ? 'bg-muted/20' : ''}`}
                                 onClick={() => { if (hasFiles) { isOpen ? closeItem(item.key) : openItem(item.key); } }}
                             >
                                 <div className="grid grid-cols-1 md:grid-cols-[1fr_1.4fr] gap-6 md:gap-16">
@@ -131,6 +131,12 @@ export function ProjectAccordion({
                                         )}
                                     </div>
                                 </div>
+                                {hasFiles && (
+                                    <ChevronDown
+                                        className={`absolute right-6 sm:right-8 top-10 h-4 w-4 text-muted-foreground/60 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+                                        aria-hidden="true"
+                                    />
+                                )}
                             </div>
 
                             {/* Expanded images */}
